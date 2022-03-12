@@ -1,0 +1,39 @@
+.user {
+    width:clamp(80px, 70vw + 1rem, 500px);
+    height:clamp(200px, 70vh + 1rem, 500px);
+    border:solid black .2rem;
+    border-radius:1rem;
+    margin:0 auto;
+    position:relative;
+    top:1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    font-size:2rem;
+    align-items:center;
+    overflow-y: auto;
+}
+
+.input-user {
+    height:2rem;
+    border-radius:.5rem;
+    width:clamp(12rem, 45vw + 1rem, 20rem);
+    font-size:1.5rem;
+}
+
+.mail, .password, .name {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    margin:0 2rem;
+    align-items:center;
+}
+
+.button-user {
+    width:60%;
+}
+
+.submit {
+    width:15%;
+    height:2.5rem;
+}

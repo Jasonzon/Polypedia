@@ -1,0 +1,10 @@
+.connected {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button-connected {
+    height:3rem;
+    margin:1rem;
+}

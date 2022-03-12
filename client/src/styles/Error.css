@@ -1,0 +1,9 @@
+.error-parent {
+    display:flex;
+    top:clamp(5rem, 30vh + 10px, 20rem);
+    position:relative;
+}
+
+.error {
+    margin:auto;
+}

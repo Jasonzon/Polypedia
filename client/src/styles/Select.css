@@ -1,0 +1,12 @@
+.select {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:.5rem;
+}
+
+.select-input {
+    width:clamp(2rem, 20vw + 1rem, 25rem);
+    font-size: 1.5rem;
+    border-radius:.4rem;
+}
