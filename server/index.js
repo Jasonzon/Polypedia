@@ -33,7 +33,7 @@ app.get("/listes", async (req,res) => {
 
 app.get("/listes/:id", async (req,res) => {
     try {
-        const {id} = res.params
+        const {id} = req.params
         const list = await pool.query("SELECT * FROM list WHERE list_id = $1",[id])
         res.json(list.rows[0])
     } catch (err) {
@@ -96,7 +96,7 @@ app.get("/users", async (req,res) => {
 
 app.get("/users/:id", async (req,res) => {
     try {
-        const {id} = res.params
+        const {id} = req.params
         const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_id = $1",[id])
         res.json(user.rows[0])
     } catch (err) {
@@ -122,8 +122,8 @@ app.post("/users", async (req,res) => {
 app.put("/users/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const {name, mail, password, description} = req.body
-        const updateUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_password = $3, polyuser_description = $4 WHERE polyuser_id = $5",[name, mail, password, description,id])
+        const {name, mail, password, description, role} = req.body
+        const updateUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_password = $3, polyuser_description = $4, polyuser_role = $5 WHERE polyuser_id = $6",[name, mail, password, description, role, id])
         res.json("User was updated")
     } catch (err) {
         console.error(err.message)
@@ -159,8 +159,8 @@ app.get("/villes", async (req,res) => {
 
 app.get("/villes/:id", async (req,res) => {
     try {
-        const {id} = res.params
-        const city = await pool.query("SELECT * FROM city WHERE city_id = $1",[id])
+        const {id} = req.params
+        const city = await pool.query("SELECT city_name FROM city WHERE city_id = $1",[id])
         res.json(city.rows[0])
     } catch (err) {
         console.error(err.message)
@@ -222,8 +222,8 @@ app.get("/themes", async (req,res) => {
 
 app.get("/themes/:id", async (req,res) => {
     try {
-        const {id} = res.params
-        const theme = await pool.query("SELECT * FROM theme WHERE theme_id = $1",[id])
+        const {id} = req.params
+        const theme = await pool.query("SELECT theme_name FROM theme WHERE theme_id = $1",[id])
         res.json(theme.rows[0])
     } catch (err) {
         console.error(err.message)
@@ -285,8 +285,8 @@ app.get("/color", async (req,res) => {
 
 app.get("/color/:id", async (req,res) => {
     try {
-        const {id} = res.params
-        const color = await pool.query("SELECT * FROM color WHERE color_id = $1",[id])
+        const {id} = req.params
+        const color = await pool.query("SELECT color_name FROM color WHERE color_id = $1",[id])
         res.json(color.rows[0])
     } catch (err) {
         console.error(err.message)

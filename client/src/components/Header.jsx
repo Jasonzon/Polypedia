@@ -1,7 +1,7 @@
 import "../styles/Header.css"
 import { Link } from 'react-router-dom'
 
-function Header() {
+function Header({user, setUser, isConnected, setIsConnected}) {
     return (
         <div className="header">
             <h1 className="title">Polypedia</h1>
@@ -11,7 +11,8 @@ function Header() {
                 <Link className="link" to="/cities">Villes</Link>
                 <Link className="link" to="/themes">Themes</Link>
                 <Link className="link" to="/colors">Couleurs</Link>
-                <Link className="link" to="/user">Mon Compte</Link>
+                {user && user.polyuser_role === "admin" ? <Link className="link" to="/manage">Membres</Link> : null }
+                <Link className="link" to="/user">{user.polyuser_name ? <span>{user.polyuser_name}</span> : <span>Se connecter</span>}</Link>
             </nav>
         </div>
     )

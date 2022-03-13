@@ -1,0 +1,24 @@
+table {
+    width:clamp(80px, 70vw + 1rem, 500px);
+    margin:0 auto;
+    position:relative;
+    font-size:1.5rem;
+    align-items:center;
+    overflow-y: auto;
+    text-align:center;
+    top:.2rem;
+}
+
+td {
+    height:20px;
+    border:solid .1rem black;
+    border-radius:.3rem;
+}
+
+.toggle {
+    padding:.5rem .2rem;
+}
+
+.manage-title {
+    text-align:center;
+}

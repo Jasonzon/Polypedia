@@ -1,10 +1,10 @@
 import "../styles/Color.css"
 import Header from "./Header"
 
-function Color() {
+function Color({user, setUser, isConnected, setIsConnected}) {
     return (
         <div>
-            <Header />
+            <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import "../styles/Disconnected.css"
 import Header from "./Header"
 import {useState} from "react"
 
-function Disconnected({setAuth}) {
+function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
     const [isRegistered, setIsRegistered] = useState(true)
     const [inputs, setInputs] = useState({
         mail:"",
@@ -54,7 +54,7 @@ function Disconnected({setAuth}) {
 
     return (
         <div>
-            <Header />
+            <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             {isRegistered ? <h1 className="title-user">Connexion</h1> : <h1>Enregistrement</h1>}
             <div className="user">
                 <div className="mail">

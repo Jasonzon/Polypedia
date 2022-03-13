@@ -5,7 +5,7 @@ const authorization = require("./middleware/authorization")
 router.get("/", authorization, async (req, res) => {
     try {
 
-        const user = await pool.query("SELECT polyuser_name FROM polyuser WHERE polyuser_id = $1",[req.user])
+        const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_id = $1",[req.polyuser])
         res.json(user.rows[0])
         
     } catch (err) {

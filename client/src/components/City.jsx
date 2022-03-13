@@ -1,10 +1,10 @@
 import "../styles/City.css"
 import Header from "./Header"
 
-function City() {
+function City({user, setUser, isConnected, setIsConnected}) {
     return (
         <div>
-            <Header />
+            <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
         </div>
     )
 }

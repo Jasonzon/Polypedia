@@ -1,9 +1,9 @@
 import "../styles/User.css"
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 import Connected from "./Connected"
 import Disconected from "./Disconnected"
 
-function User() {
+function User({isConnected, setIsConnected, user, setUser}) {
     const checkAuthenticated = async () => {
         try {
             const res = await fetch("http://localhost:5000/auth/verify", {
@@ -21,13 +21,12 @@ function User() {
         checkAuthenticated()
     },[])
 
-    const [isConnected, setIsConnected] = useState(false)
     const setAuth = boolean => {
         setIsConnected(boolean)
     }
     return (
         <div>
-            {isConnected ? <Connected setAuth={setAuth} /> : <Disconected setAuth={setAuth}/>}
+            {isConnected ? <Connected setAuth={setAuth} user={user} setUser={setUser} /> : <Disconected user={user} setUser={setUser} setAuth={setAuth}/>}
         </div>
     )
 }

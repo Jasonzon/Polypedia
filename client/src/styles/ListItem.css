@@ -1,0 +1,12 @@
+.listitem {
+    border:solid black .1rem;
+    border-radius:1rem;
+    padding:.2rem 1.5rem;
+}
+
+.stats {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:1rem;
+}

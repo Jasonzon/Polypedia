@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.info {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-left:1rem;
+  padding:0 1rem;
+  border:.125rem solid black;
+  border-radius:2rem;
+  display:flex;
+  flex-direction:row;
+  text-align:justify;
+}
+
+.last-list {
+  margin-left:1rem;
+}
+
+
+.logo-polytech {
+  width:clamp(50px, 40vw + 5rem, 500px);
+  height:clamp(50px, 40vh + 5rem, 500px);
+  aspect-ratio: 1;
+  padding:2rem 1rem 0 3rem;
+}

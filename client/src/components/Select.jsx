@@ -1,6 +1,6 @@
 import "../styles/Select.css"
 
-function Select() {
+function Select({user, setUser, isConnected, setIsConnected}) {
     return (
         <div className="select">
             <input className="select-input" type="search" name="modelsearch" list="modelslist"></input>
