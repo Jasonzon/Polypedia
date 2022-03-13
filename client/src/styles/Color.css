@@ -1,0 +1,56 @@
+.browse {
+    width:100%;
+    height:100%;
+    padding:1rem .2rem;
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.color-table {
+    width:clamp(120px, 70vw + 1rem, 500px);
+    position:relative;
+    font-size:1.5rem;
+    align-items:center;
+    text-align:center;
+    top:.2rem;
+}
+
+.color-list {
+    list-style-type: none;
+}
+
+.color-item {
+    margin-top:.25rem;
+}
+
+.color-div {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin:0 auto;
+    position:relative;
+    align-items:center;
+}
+
+.coloritem {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    border:.15rem solid black;
+    border-radius:.5rem;
+    width:100%;
+    gap:2rem;
+    font-size: 150%;
+}
+
+@media screen and (max-width: 700px) {
+    .coloritem {
+        font-size:100%;
+        transform:translateX(-2rem);
+    }
+
+    .year {
+        display:none;
+    }
+  }

@@ -2,7 +2,7 @@ import "../styles/ListItem.css"
 import {useState, useEffect} from "react"
 
 function ListItem({list_name, list_color, list_theme, list_city, list_year, list_description}) {
-    const [infos, setInfos] = useState([])
+    const [infos, setInfos] = useState({})
 
     async function getInfos() {
         const response_city = await fetch(`http://localhost:5000/villes/${list_city}`,{

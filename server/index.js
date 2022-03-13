@@ -36,6 +36,38 @@ app.use("/themes", require("./routes/theme"))
 
 app.use("/villes", require("./routes/city"))
 
+//obtain lists by color, theme, city
+
+app.get("/color-list/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_color = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.get("/theme-list/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_theme = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.get("/city-list/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_city = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 app.listen(5000, () => {
     console.log(`server is starting on port 5000`)
 })
