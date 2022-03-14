@@ -14,13 +14,97 @@ router.get("/", async (req,res) => {
     }
 })
 
-//get a list
+//get a list by id
 
-router.get("/:id", async (req,res) => {
+router.get("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const list = await pool.query("SELECT * FROM list WHERE list_id = $1",[id])
         res.json(list.rows[0])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by name
+
+router.get("/name/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_name = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by color
+
+router.get("/color/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_color = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by theme
+
+router.get("/theme/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_theme = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by city
+
+router.get("/city/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_city = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by user
+
+router.get("/user/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE polyuser_id = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by year
+
+router.get("/year/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_year = $1",[id])
+        res.json(list.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get the lists by description
+
+router.get("/description/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const list = await pool.query("SELECT * FROM list WHERE list_description = $1",[id])
+        res.json(list.rows)
     } catch (err) {
         console.error(err.message)
     }

@@ -1,0 +1,22 @@
+.add-name {
+    width:clamp(80px, 70vw + 1rem, 500px);
+    height:clamp(200px, 30vh + 1rem, 500px);
+    border:solid black .2rem;
+    border-radius:1rem;
+    margin:0 auto;
+    position:relative;
+    top:1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    font-size:2rem;
+    align-items:center;
+}
+
+.red-border {
+    border:.15rem solid red;
+}
+
+.little-text {
+    font-size: .8rem;
+}

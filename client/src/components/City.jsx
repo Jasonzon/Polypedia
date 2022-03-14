@@ -1,10 +1,73 @@
 import "../styles/City.css"
 import Header from "./Header"
+import {useState, useEffect} from "react"
+import { Link } from 'react-router-dom'
 
 function City({user, setUser, isConnected, setIsConnected}) {
+    const [cities, setCities] = useState([])
+    const [cityList, setCityList] = useState([])
+
+    async function getCities() {
+        const response = await fetch("http://localhost:5000/villes", {
+            method: "GET"
+        })
+        const parseRes = await response.json()
+        setCities(parseRes)
+    }
+
+    useEffect(() => {
+        getCities()
+    },[])
+
+    async function showLists(city_id) {
+        const response = await fetch(`http://localhost:5000/listes/city/${city_id}`, {
+            method: "GET"
+        })
+        const parseRes = await response.json()
+        setCityList(parseRes)
+    }
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
+            <div className="title-flex">
+                <h1>Villes du réseau</h1>
+                {isConnected ? (
+                <Link to="/cities/add"><div className="add" title="ajouter">
+                    <div className="vertical"></div>
+                    <div className="horizontal"></div>
+                </div> </Link> ) : ( 
+                <div className="add-disabled" title="vous devez être connecté">
+                    <div className="vertical-disabled"></div>
+                    <div className="horizontal-disabled"></div>
+                </div> )}
+            </div>
+            <div className="color-div">
+                <div className="color-table">
+                    <table>
+                        <tr>
+                            <td>Ville</td>
+                            <td>Listes</td>
+                        </tr>
+                        {cities.map(({city_name, city_id}) =>
+                            <tr>
+                                <td>{city_name}</td>
+                                <td><button className="browse" onClick={() => showLists(city_id)}>Chercher</button></td>         
+                            </tr>
+                        )}
+                    </table>
+                </div>
+                <ul className="color-list">
+                    {cityList.map(({list_name, list_year}) => 
+                        <li className="color-item" key={`${list_name}-city`}>
+                            <div className="coloritem">
+                                <span>{list_name}</span>
+                                <span className="year">{list_year}</span>
+                            </div>
+                        </li>
+                    )}
+                </ul>
+            </div>
         </div>
     )
 }

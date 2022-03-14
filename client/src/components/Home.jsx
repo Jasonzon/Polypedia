@@ -2,13 +2,31 @@ import '../styles/Home.css';
 import Header from "./Header"
 import Select from "./Select"
 import logo from "../assets/logo-polytech.png"
+import {useState, useEffect} from "react"
 
 function Home({user, setUser, isConnected, setIsConnected}) {
+
+  const search = "list-search"
+  const [listList, setListList] = useState([])
+  
+  async function getLists() {
+    const response = await fetch("http://localhost:5000/listes", {
+      method: "GET"
+    })
+
+    const parseRes = await response.json()
+    setListList(parseRes)
+  }
+
+  useEffect(() => {
+    getLists()
+  },[])
+
   return (
     <div>
       <Header user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />
       <div className="Home">
-        <Select />
+        <Select user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search} list={listList}/>
         <h1>Bienvenue sur Polypedia</h1>
         <div className="info">
           <div>

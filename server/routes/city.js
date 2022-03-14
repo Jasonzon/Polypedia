@@ -14,13 +14,25 @@ router.get("/", async (req,res) => {
     }
 })
 
-//get a city
+//get a city by id
 
-router.get("/:id", async (req,res) => {
+router.get("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const city = await pool.query("SELECT city_name FROM city WHERE city_id = $1",[id])
+        const city = await pool.query("SELECT * FROM city WHERE city_id = $1",[id])
         res.json(city.rows[0])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//get a city by name
+
+router.get("/name/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const city = await pool.query("SELECT * FROM city WHERE city_name = $1",[id])
+        res.json(city.rows)
     } catch (err) {
         console.error(err.message)
     }

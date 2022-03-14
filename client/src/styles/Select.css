@@ -11,3 +11,11 @@
     font-size: 1.5rem;
     border-radius:.4rem;
 }
+
+.input-user3 {
+    height:2.3rem;
+    border-radius:.5rem;
+    width:clamp(12rem, 45vw + 2rem, 20.5rem);
+    font-size:1.5rem;
+    margin-top:0rem;
+}

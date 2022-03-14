@@ -1,0 +1,60 @@
+.big-form {
+    width:clamp(100px, 70vw + 1rem, 800px);
+    height:clamp(250px, 55vh + 1rem, 700px);
+    border:solid black .2rem;
+    border-radius:1rem;
+    margin:0 auto;
+    position:relative;
+    top:1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    font-size:2rem;
+    align-items:center;
+    overflow:auto;
+}
+
+.list-form {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.flex-column {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height:100%;
+    padding:0 3rem;
+}
+
+.input-user2 {
+    height:2rem;
+    border-radius:.5rem;
+    width:clamp(12rem, 45vw + 1rem, 20rem);
+    font-size:1.5rem;
+    margin-top:1rem;
+    margin-left:1rem;
+}
+
+.mail, .password, .name {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    margin:0 2rem;
+    align-items:center;
+}
+
+.button-user2 {
+    width:60%;
+    margin-top:.5rem;
+}
+
+.submit {
+    width:15%;
+    height:2.5rem;
+}
+
+.flex-column label {
+    margin-top:.75rem;
+}

@@ -19,7 +19,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
 
     async function changeRole(polyuser_id, polyuser_mail, polyuser_name, polyuser_role, polyuser_description, polyuser_password) {
         const newRole = polyuser_role === "user" ? "admin" : "user"
-        const response = await fetch(`http://localhost:5000/users/${polyuser_id}`, {
+        const response = await fetch(`http://localhost:5000/users/id/${polyuser_id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({

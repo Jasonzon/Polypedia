@@ -8,3 +8,68 @@
     display:grid;
     grid-template-columns: repeat(2, 1fr);
 }
+
+.add {
+    width:4rem;
+    height:4rem;
+    border:.2rem solid black;
+    border-radius:100%;
+    margin:.75rem .75rem 0 0;
+    position:relative;
+    cursor:pointer;
+    background:#F5FFFA;
+}
+
+.add-disabled {
+    width:4rem;
+    height:4rem;
+    border:.2rem solid black;
+    border-radius:100%;
+    margin:.75rem .75rem 0 0;
+    position:relative;
+    background:#696969;
+}
+
+.vertical-disabled {
+    background:#A8A8A8;
+    width:10%;
+    height:80%;
+    border-radius:.5rem;
+}
+
+.horizontal-disabled {
+    background:#A8A8A8;
+    width:80%;
+    height:10%;
+    border-radius:.5rem;   
+}
+
+.add:hover {
+    background:#E5FFFA;
+}
+
+.title-flex {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.vertical {
+    background:greenyellow;
+    width:10%;
+    height:80%;
+    border-radius:.5rem;
+}
+
+.horizontal {
+    background:greenyellow;
+    width:80%;
+    height:10%;
+    border-radius:.5rem;   
+}
+
+.vertical, .horizontal, .vertical-disabled, .horizontal-disabled {
+    position:absolute;
+    inset:0;
+    margin: auto;
+}

@@ -1,6 +1,7 @@
 import "../styles/Color.css"
 import Header from "./Header"
 import {useState, useEffect} from "react"
+import { Link } from 'react-router-dom'
 
 function Color({user, setUser, isConnected, setIsConnected}) {
     const [colors, setColors] = useState([])
@@ -19,7 +20,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     },[])
 
     async function showLists(color_id) {
-        const response = await fetch(`http://localhost:5000/color-list/${color_id}`, {
+        const response = await fetch(`http://localhost:5000/listes/color/${color_id}`, {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -49,7 +50,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                 </div>
                 <ul className="color-list">
                     {colorList.map(({list_name, list_year}) => 
-                        <li className="color-item">
+                        <li className="color-item" key={`${list_name}-color`}>
                             <div className="coloritem">
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>

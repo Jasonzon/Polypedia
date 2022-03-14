@@ -1,7 +1,30 @@
 import "../styles/Header.css"
 import { Link } from 'react-router-dom'
+import {useEffect} from "react"
 
 function Header({user, setUser, isConnected, setIsConnected}) {
+    const checkAuthenticated = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/auth/verify", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            })
+            const parseRes = await res.json()
+            if (parseRes) { 
+                setIsConnected(true)
+            }
+            else {
+             setIsConnected(false)
+            }
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+    useEffect(() => {
+        checkAuthenticated()
+    },[])
+
     return (
         <div className="header">
             <h1 className="title">Polypedia</h1>

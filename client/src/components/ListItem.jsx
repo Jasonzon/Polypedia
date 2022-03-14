@@ -5,17 +5,17 @@ function ListItem({list_name, list_color, list_theme, list_city, list_year, list
     const [infos, setInfos] = useState({})
 
     async function getInfos() {
-        const response_city = await fetch(`http://localhost:5000/villes/${list_city}`,{
+        const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
             method: "GET"
         })
         const parseRes_city = await response_city.json()
 
-        const response_theme = await fetch(`http://localhost:5000/themes/${list_theme}`,{
+        const response_theme = await fetch(`http://localhost:5000/themes/id/${list_theme}`,{
             method: "GET"
         })
         const parseRes_theme = await response_theme.json()
 
-        const response_color = await fetch(`http://localhost:5000/color/${list_color}`,{
+        const response_color = await fetch(`http://localhost:5000/color/id/${list_color}`,{
             method: "GET"
         })
         const parseRes_color = await response_color.json()
