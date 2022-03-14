@@ -8,8 +8,8 @@ import List from './List';
 import Manage from "./Manage"
 import AddList from "./AddList"
 import AddCity from "./AddCity"
-//import AddColor from "./AddColor"
-//import AddTheme from "./AddTheme"
+import AddColor from "./AddColor"
+import AddTheme from "./AddTheme"
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import {useState, Fragment} from "react"
 
@@ -29,6 +29,8 @@ function Main() {
                 <Route exact path="/manage" element={<Manage user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/lists/add" element={<AddList user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/cities/add" element={<AddCity user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
+                <Route exact path="/colors/add" element={<AddColor user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
+                <Route exact path="/themes/add" element={<AddTheme user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route path="*" element={<Error />} />
             </Routes>
         </Router>

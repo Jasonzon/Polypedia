@@ -37,7 +37,7 @@ function List({user, setUser, isConnected, setIsConnected}) {
             <ul className="list-list">
                 {lists.map(({list_name, list_color, list_theme, list_city, list_year, list_description}) => 
                     <li key={list_name}>
-                        <ListItem list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} />
+                        <ListItem style={""} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} />
                     </li>
                 )}
             </ul>

@@ -3,19 +3,6 @@ import Header from "./Header"
 import {useEffect} from "react"
 
 function Connected({setAuth, user, setUser, isConnected, setIsConnected}) {
-    async function getUser() {
-        const response = await fetch("http://localhost:5000/dashboard/", {
-            method:"GET",
-            headers: {token: localStorage.token}
-        
-        })
-        const parseRes = await response.json()
-        setUser(parseRes)
-    }
-    useEffect(() => {
-        getUser()
-    },[])
-
     function logout() {
         setAuth(false)
         localStorage.removeItem("token")

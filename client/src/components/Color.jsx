@@ -30,11 +30,20 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
+            <div className="title-flex">
+                <h1>Couleurs de listes</h1>
+                {isConnected ? (
+                <Link to="/colors/add"><div className="add" title="ajouter">
+                    <div className="vertical"></div>
+                    <div className="horizontal"></div>
+                </div> </Link> ) : ( 
+                <div className="add-disabled" title="vous devez être connecté">
+                    <div className="vertical-disabled"></div>
+                    <div className="horizontal-disabled"></div>
+                </div> )}
+            </div>
             <div className="color-div">
                 <div className="color-table">
-                    <div>
-                        <h1>Couleurs de listes</h1>
-                    </div>
                     <table>
                         <tr>
                             <td>Couleur</td>

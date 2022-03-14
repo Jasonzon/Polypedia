@@ -1,7 +1,7 @@
 import "../styles/ListItem.css"
 import {useState, useEffect} from "react"
 
-function ListItem({list_name, list_color, list_theme, list_city, list_year, list_description}) {
+function ListItem({style, list_name, list_color, list_theme, list_city, list_year, list_description}) {
     const [infos, setInfos] = useState({})
 
     async function getInfos() {
@@ -32,7 +32,7 @@ function ListItem({list_name, list_color, list_theme, list_city, list_year, list
     },[])
 
     return (
-        <div className="listitem">
+        <div className={`listitem ${style}`}>
             <h2>{list_name}</h2>
             <h3>{list_year}</h3>
             <div className="stats">

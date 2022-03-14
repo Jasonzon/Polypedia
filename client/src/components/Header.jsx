@@ -21,8 +21,20 @@ function Header({user, setUser, isConnected, setIsConnected}) {
             console.error(err.message)
         }
     }
+
+    async function getUser() {
+        const response = await fetch("http://localhost:5000/dashboard/", {
+            method:"GET",
+            headers: {token: localStorage.token}
+        
+        })
+        const parseRes = await response.json()
+        setUser(parseRes)
+    }
+
     useEffect(() => {
         checkAuthenticated()
+        getUser()
     },[])
 
     return (
