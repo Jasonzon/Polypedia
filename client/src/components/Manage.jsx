@@ -17,16 +17,12 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
         getUsers()
     },[changeRole])
 
-    async function changeRole(polyuser_id, polyuser_mail, polyuser_name, polyuser_role, polyuser_description, polyuser_password) {
+    async function changeRole(polyuser_id, polyuser_role) {
         const newRole = polyuser_role === "user" ? "admin" : "user"
-        const response = await fetch(`http://localhost:5000/users/id/${polyuser_id}`, {
+        const response = await fetch(`http://localhost:5000/users/role/${polyuser_id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                name: polyuser_name,
-                mail: polyuser_mail,
-                password: polyuser_password,
-                description: polyuser_description,
                 role: newRole
             })
         })
@@ -51,7 +47,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
                         <td>{polyuser_id}</td>
                         <td>{polyuser_mail}</td>
                         <td>{polyuser_name}</td>
-                        <td><button className="toggle" disabled={polyuser_id === user.polyuser_id} onClick={() => changeRole(polyuser_id, polyuser_mail, polyuser_name, polyuser_role, polyuser_description, polyuser_password)}>{polyuser_role}</button></td>         
+                        <td><button className="toggle" disabled={polyuser_id === user.polyuser_id} onClick={() => changeRole(polyuser_id, polyuser_role)}>{polyuser_role}</button></td>         
                     </tr>
                 )}
             </table>

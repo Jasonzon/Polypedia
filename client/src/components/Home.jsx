@@ -17,7 +17,6 @@ function Home({user, setUser, isConnected, setIsConnected}) {
     })
 
     const parseRes = await response.json()
-    setListList(parseRes)
     setLastList(parseRes.slice(-1)[0])
   }
 
@@ -43,7 +42,7 @@ function Home({user, setUser, isConnected, setIsConnected}) {
           <img className="logo-polytech" alt="logo polytech" src={logo}/>
         </div>
         <h2 className="last-list">Voici la dernière liste ajoutée :</h2>
-        <ListItem style="home" list_name={lastList.list_name} list_color={lastList.list_color} list_theme={lastList.list_theme} list_year={lastList.list_year} list_city={lastList.list_city} list_description={lastList.list_description} />
+        <ListItem style="home" list_id={lastList.list_id} list_name={lastList.list_name} list_color={lastList.list_color} list_theme={lastList.list_theme} list_year={lastList.list_year} list_city={lastList.list_city} list_description={lastList.list_description} />
       </div>
     </div>
   );

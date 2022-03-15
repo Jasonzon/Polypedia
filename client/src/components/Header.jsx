@@ -20,6 +20,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
         } catch (err) {
             console.error(err.message)
         }
+        await getUser()
     }
 
     async function getUser() {
@@ -30,12 +31,10 @@ function Header({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setUser(parseRes)
+        console.log(user)
     }
 
-    useEffect(() => {
-        checkAuthenticated()
-        getUser()
-    },[])
+    useEffect(() => checkAuthenticated(),[])
 
     return (
         <div className="header">

@@ -19,7 +19,7 @@ router.get("/", async (req,res) => {
 router.get("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const color = await pool.query("SELECT color_name FROM color WHERE color_id = $1",[id])
+        const color = await pool.query("SELECT * FROM color WHERE color_id = $1",[id])
         res.json(color.rows[0])
     } catch (err) {
         console.error(err.message)
@@ -31,7 +31,7 @@ router.get("/id/:id", async (req,res) => {
 router.get("/name/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const color = await pool.query("SELECT color_name FROM color WHERE color_name = $1",[id])
+        const color = await pool.query("SELECT * FROM color WHERE color_name = $1",[id])
         res.json(color.rows[0])
     } catch (err) {
         console.error(err.message)

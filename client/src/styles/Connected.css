@@ -5,6 +5,37 @@
 }
 
 .button-connected {
-    height:3rem;
+    padding:0 2.5rem;
     margin:1rem;
+}
+
+.user-page {
+    width:clamp(500px, 70vw + 1rem, 900px);
+    height:clamp(400px, 65vh + 1rem, 700px);
+    border:solid black .2rem;
+    border-radius:1rem;
+    margin:0 auto;
+    position:relative;
+    top:1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    font-size:2rem;
+    align-items:center;
+    margin-bottom:3rem;
+}
+
+.user-page h2, .user-page h3 {
+    margin:0;
+}
+
+.user-page a {
+    display:inline-block;
+    border-bottom: .2rem solid transparent;
+}
+
+.user-page a:hover {
+    color:#87CEFA;
+    cursor:pointer;
+    border-bottom: .2rem solid #87CEFA;
 }

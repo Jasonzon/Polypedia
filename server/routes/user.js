@@ -99,13 +99,39 @@ router.post("/", async (req,res) => {
     }
 })
 
-//update a user
+//update a user without password and role
 
-router.put("/:id", async (req,res) => {
+router.put("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const {name, mail, password, description, role} = req.body
-        const updateUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_password = $3, polyuser_description = $4, polyuser_role = $5 WHERE polyuser_id = $6",[name, mail, password, description, role, id])
+        const {name, mail, description} = req.body
+        const updateUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_description = $3 WHERE polyuser_id = $4",[name, mail, description, id])
+        res.json("User was updated")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//update a user password
+
+router.put("/password/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const {password} = req.body
+        const updateUser = await pool.query("UPDATE polyuser SET polyuser_password = $1 WHERE polyuser_id = $2",[password,id])
+        res.json("User was updated")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+//update a user role
+
+router.put("/role/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const {role} = req.body
+        const updateUser = await pool.query("UPDATE polyuser SET polyuser_role = $1 WHERE polyuser_id = $2",[role,id])
         res.json("User was updated")
     } catch (err) {
         console.error(err.message)

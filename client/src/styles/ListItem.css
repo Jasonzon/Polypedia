@@ -10,7 +10,23 @@
     justify-content:flex-start;
     gap:1rem;
 }
+
 .home {
     margin:0 1rem;
     margin-bottom:1rem;
-  }
+}
+
+.listitem h2 {
+    display:inline-block;
+    border-bottom: .2rem solid transparent;
+}
+
+.listitem h2:hover {
+    color:#87CEFA;
+    cursor:pointer;
+    border-bottom: .2rem solid #87CEFA;
+}
+
+a {
+    color:black;
+}

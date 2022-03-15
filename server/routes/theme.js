@@ -19,7 +19,7 @@ router.get("/", async (req,res) => {
 router.get("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const theme = await pool.query("SELECT theme_name FROM theme WHERE theme_id = $1",[id])
+        const theme = await pool.query("SELECT * FROM theme WHERE theme_id = $1",[id])
         res.json(theme.rows[0])
     } catch (err) {
         console.error(err.message)
@@ -31,7 +31,7 @@ router.get("/id/:id", async (req,res) => {
 router.get("/name/:id", async (req,res) => {
     try {
         const {id} = req.params
-        const theme = await pool.query("SELECT theme_name FROM theme WHERE theme_name = $1",[id])
+        const theme = await pool.query("SELECT * FROM theme WHERE theme_name = $1",[id])
         res.json(theme.rows[0])
     } catch (err) {
         console.error(err.message)

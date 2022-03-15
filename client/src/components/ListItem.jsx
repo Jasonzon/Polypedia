@@ -1,8 +1,13 @@
 import "../styles/ListItem.css"
 import {useState, useEffect} from "react"
+import {Link} from "react-router-dom"
 
-function ListItem({style, list_name, list_color, list_theme, list_city, list_year, list_description}) {
-    const [infos, setInfos] = useState({})
+function ListItem({style, list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) {
+    const [infos, setInfos] = useState({
+        color:"",
+        theme:"",
+        city:""
+    })
 
     async function getInfos() {
         const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
@@ -30,10 +35,10 @@ function ListItem({style, list_name, list_color, list_theme, list_city, list_yea
     useEffect(() => {
         getInfos()
     },[])
-
+    
     return (
         <div className={`listitem ${style}`}>
-            <h2>{list_name}</h2>
+            <Link to={"/lists/" + list_id}><h2>{list_name}</h2></Link>
             <h3>{list_year}</h3>
             <div className="stats">
                 <span>Ville: {infos.city}</span>
