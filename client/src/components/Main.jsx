@@ -12,6 +12,7 @@ import AddColor from "./AddColor"
 import AddTheme from "./AddTheme"
 import ListChoose from "./ListChoose"
 import ModifUser from "./ModifUser"
+import ListSpec from './ListSpec'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import {useState, Fragment, useEffect} from "react"
 
@@ -38,7 +39,8 @@ function Main() {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
-                <Route exact path="/lists" element={<List user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
+                <Route exact path="/lists/all" element={<List path={""} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
+                <Route exact path="/lists/name/:name" element={<ListSpec user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/cities" element={<City user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/themes" element={<Theme user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/colors" element={<Color user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
@@ -49,7 +51,7 @@ function Main() {
                 <Route exact path="/cities/add" element={<AddCity user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/colors/add" element={<AddColor user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/themes/add" element={<AddTheme user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
-                {list.length === 0 ? null : <Route exact path="/lists/:id" element={<ListChoose list={list} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} /> }
+                {list.length === 0 ? null : <Route exact path="/lists/id/:id" element={<ListChoose list={list} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} /> }
                 <Route path="*" element={<Error />} />
             </Routes>
         </Router>

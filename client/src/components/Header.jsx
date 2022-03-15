@@ -31,7 +31,6 @@ function Header({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setUser(parseRes)
-        console.log(user)
     }
 
     useEffect(() => checkAuthenticated(),[])
@@ -41,7 +40,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
             <h1 className="title">Polypedia</h1>
             <nav className="nav">
                 <Link className="link" to="/">Accueil</Link>
-                <Link className="link" to="/lists">Listes</Link>
+                <Link className="link" to="/lists/all">Listes</Link>
                 <Link className="link" to="/cities">Villes</Link>
                 <Link className="link" to="/themes">Themes</Link>
                 <Link className="link" to="/colors">Couleurs</Link>

@@ -60,3 +60,25 @@
   aspect-ratio: 1;
   padding:2rem 1rem 0 3rem;
 }
+
+.home-flex {
+  display:flex;
+  flex-direction:row;
+  margin-left:2rem;
+}
+
+.submit-home {
+  margin-left:.3rem;
+  height:2.2rem;
+  transform:translateY(45%);
+}
+
+.input-home {
+  height:2.3rem;
+  border-radius:.5rem;
+  width:clamp(12rem, 45vw + 2rem, 20.5rem);
+  font-size:1.5rem;
+  margin-top:0rem;
+  transform:translateY(45%);
+  margin-left:.5rem;
+}

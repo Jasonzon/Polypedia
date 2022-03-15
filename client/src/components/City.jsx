@@ -1,9 +1,12 @@
 import "../styles/City.css"
 import Header from "./Header"
 import {useState, useEffect} from "react"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function City({user, setUser, isConnected, setIsConnected}) {
+
+    const navigate = useNavigate()
+
     const [cities, setCities] = useState([])
     const [cityList, setCityList] = useState([])
 
@@ -58,8 +61,8 @@ function City({user, setUser, isConnected, setIsConnected}) {
                     </table>
                 </div>
                 <ul className="color-list">
-                    {cityList.map(({list_name, list_year}) => 
-                        <li className="color-item" key={`${list_name}-city`}>
+                    {cityList.map(({list_id, list_name, list_year}) => 
+                        <li className="color-item" key={`${list_name}-city`} onClick={() => navigate(`/lists/id/${list_id}`)}>
                             <div className="coloritem">
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>

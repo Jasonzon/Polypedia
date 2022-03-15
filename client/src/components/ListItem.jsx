@@ -38,7 +38,7 @@ function ListItem({style, list_id, list_name, list_color, list_theme, list_city,
     
     return (
         <div className={`listitem ${style}`}>
-            <Link to={"/lists/" + list_id}><h2>{list_name}</h2></Link>
+            <Link to={"/lists/id/" + list_id}><h2>{list_name}</h2></Link>
             <h3>{list_year}</h3>
             <div className="stats">
                 <span>Ville: {infos.city}</span>

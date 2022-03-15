@@ -4,12 +4,16 @@ import Select from "./Select"
 import ListItem from "./ListItem"
 import logo from "../assets/logo-polytech.png"
 import {useState, useEffect} from "react"
+import {useNavigate} from "react-router-dom"
 
 function Home({user, setUser, isConnected, setIsConnected}) {
 
-  const search = "list-search"
+  const navigate = useNavigate()
+
   const [listList, setListList] = useState([])
   const [lastList, setLastList] = useState([])
+
+  const [select, setSelect] = useState("")
   
   async function getLists() {
     const response = await fetch("http://localhost:5000/listes", {
@@ -17,6 +21,7 @@ function Home({user, setUser, isConnected, setIsConnected}) {
     })
 
     const parseRes = await response.json()
+    setListList(parseRes)
     setLastList(parseRes.slice(-1)[0])
   }
 
@@ -28,8 +33,17 @@ function Home({user, setUser, isConnected, setIsConnected}) {
     <div>
       <Header user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />
       <div className="Home">
-        <Select user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search} list={listList}/>
         <h1>Bienvenue sur Polypedia</h1>
+        <div className="home-flex">
+          <h2>Chercher une liste : </h2>
+          <input onChange={(e)=>setSelect(e.target.value)} value={select} className="input-home" type="search" name="modelsearch" list="data-home"></input>
+            <datalist id="data-home">
+                {listList.map((obj) => 
+                    <option value={Object.values(obj)[1]}></option>
+                )}
+            </datalist>
+          <button className="submit-home" onClick={() => navigate(`/lists/name/${select}`)}>Chercher</button>
+        </div>
         <div className="info">
           <div>
             <p>Chaque école du réseau Polytech a son BDE (ou CDE). Ils sont mis en place chaque année après que les étudiants, généralent en PEIP1 et en 3A se soient affrontés pendant des campagnes.</p>
@@ -42,7 +56,7 @@ function Home({user, setUser, isConnected, setIsConnected}) {
           <img className="logo-polytech" alt="logo polytech" src={logo}/>
         </div>
         <h2 className="last-list">Voici la dernière liste ajoutée :</h2>
-        <ListItem style="home" list_id={lastList.list_id} list_name={lastList.list_name} list_color={lastList.list_color} list_theme={lastList.list_theme} list_year={lastList.list_year} list_city={lastList.list_city} list_description={lastList.list_description} />
+        <ListItem style={"home"} list_id={lastList.list_id} list_name={lastList.list_name} list_color={lastList.list_color} list_theme={lastList.list_theme} list_year={lastList.list_year} list_city={lastList.list_city} list_description={lastList.list_description} />
       </div>
     </div>
   );

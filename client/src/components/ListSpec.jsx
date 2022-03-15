@@ -2,13 +2,13 @@ import "../styles/List.css"
 import Header from "./Header"
 import ListItem from "./ListItem"
 import {useState, useEffect} from "react"
-import { Link} from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-function List({path, user, setUser, isConnected, setIsConnected}) {
+function ListSpec({user, setUser, isConnected, setIsConnected}) {
     const [lists, setLists] = useState([])
-    console.log(path)
+    const {name} = useParams()
     async function getLists() {
-        const response = await fetch(`http://localhost:5000/listes/${path}`, {
+        const response = await fetch(`http://localhost:5000/listes/name/${name}`, {
             method:"GET"
         })
         const parseRes = await response.json()
@@ -45,4 +45,4 @@ function List({path, user, setUser, isConnected, setIsConnected}) {
     )
 }
 
-export default List
+export default ListSpec

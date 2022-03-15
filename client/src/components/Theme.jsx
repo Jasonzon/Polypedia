@@ -1,9 +1,12 @@
 import "../styles/Theme.css"
 import Header from "./Header"
 import {useState, useEffect} from "react"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Theme({user, setUser, isConnected, setIsConnected}) {
+
+    const navigate = useNavigate()
+
     const [themes, setThemes] = useState([])
     const [themeList, setThemeList] = useState([])
 
@@ -58,8 +61,8 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                     </table>
                 </div>
                 <ul className="color-list">
-                    {themeList.map(({list_name, list_year}) => 
-                        <li className="color-item" key={`${list_name}-theme`}>
+                    {themeList.map(({list_id, list_name, list_year}) => 
+                        <li className="color-item" key={`${list_name}-theme`} onClick={() => navigate(`/lists/id/${list_id}`)}>
                             <div className="coloritem">
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>

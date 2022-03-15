@@ -1,9 +1,11 @@
 import "../styles/Color.css"
 import Header from "./Header"
 import {useState, useEffect} from "react"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Color({user, setUser, isConnected, setIsConnected}) {
+    const navigate = useNavigate()
+
     const [colors, setColors] = useState([])
     const [colorList, setColorList] = useState([])
 
@@ -58,8 +60,8 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                     </table>
                 </div>
                 <ul className="color-list">
-                    {colorList.map(({list_name, list_year}) => 
-                        <li className="color-item" key={`${list_name}-color`}>
+                    {colorList.map(({list_id,list_name, list_year}) => 
+                        <li className="color-item" key={`${list_name}-color`} onClick={() => navigate(`/lists/id/${list_id}`)}>
                             <div className="coloritem">
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>
