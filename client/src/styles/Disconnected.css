@@ -1,7 +1,7 @@
 .user {
     width:clamp(80px, 70vw + 1rem, 500px);
     height:clamp(200px, 70vh + 1rem, 500px);
-    border:solid black .2rem;
+    background:#87CEFA;
     border-radius:1rem;
     margin:0 auto;
     position:relative;
@@ -31,9 +31,29 @@
 
 .button-user {
     width:60%;
+    background:#009EE0;
+    border:0;
+    border-radius:.3rem;
+    cursor:pointer;
+    height:10%;
+}
+
+.button-user:hover {
+    background:#13a6e6;
 }
 
 .submit {
     width:15%;
     height:2.5rem;
+    border:0;
+    border-radius:.3rem;
+    cursor:pointer;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  border:.125rem solid #009EE0;
 }

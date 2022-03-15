@@ -11,17 +11,24 @@ table {
 
 td {
     height:20px;
-    border:solid .1rem black;
     border-radius:.3rem;
+    background: #AAE5FA;
 }
 
 .toggle {
     width:100%;
     height:100%;
-    padding:1rem .2rem;
+    padding:1.5rem .2rem;
     display: inline-flex;
     align-items: center; 
     justify-content: center;
+    border:0;
+    background:#87CEFA;
+    cursor:pointer;
+}
+
+.toggle:hover {
+    background: #AAE5FA;
 }
 
 .manage-title {

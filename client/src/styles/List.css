@@ -17,7 +17,7 @@
     margin:.75rem .75rem 0 0;
     position:relative;
     cursor:pointer;
-    background:#F5FFFA;
+    background:#87CEFA;
 }
 
 .add-disabled {
@@ -27,25 +27,25 @@
     border-radius:100%;
     margin:.75rem .75rem 0 0;
     position:relative;
-    background:#696969;
+    background:#4682B4;
 }
 
 .vertical-disabled {
-    background:#A8A8A8;
+    background:#070752;
     width:10%;
     height:80%;
     border-radius:.5rem;
 }
 
 .horizontal-disabled {
-    background:#A8A8A8;
+    background:#070752;
     width:80%;
     height:10%;
     border-radius:.5rem;   
 }
 
 .add:hover {
-    background:#E5FFFA;
+    background:#87C5FA;
 }
 
 .title-flex {
@@ -55,14 +55,14 @@
 }
 
 .vertical {
-    background:greenyellow;
+    background:rgb(30, 181, 231);
     width:10%;
     height:80%;
     border-radius:.5rem;
 }
 
 .horizontal {
-    background:greenyellow;
+    background:rgb(30, 181, 231);
     width:80%;
     height:10%;
     border-radius:.5rem;   
@@ -72,4 +72,14 @@
     position:absolute;
     inset:0;
     margin: auto;
+}
+
+.flexadd {
+    display:flex;
+    flex-direction: row;
+}
+
+.flexadd h2 {
+    margin-right:.75rem;
+    margin-top:2rem;
 }

@@ -34,7 +34,7 @@ function ListItem({style, list_id, list_name, list_color, list_theme, list_city,
 
     useEffect(() => {
         getInfos()
-    },[])
+    },[list_city, list_theme, list_color])
     
     return (
         <div className={`listitem ${style}`}>

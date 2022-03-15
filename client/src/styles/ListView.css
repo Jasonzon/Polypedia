@@ -1,14 +1,14 @@
 .list-view {
     width:clamp(20rem, 95vw + 1rem, 1500px);
     height:clamp(15rem, 75vh + 1rem, 900px);
-    border:solid black .2rem;
     border-radius:1rem;
     margin:0 auto;
     position:relative;
-    top:1rem;
+    top:2rem;
     display:flex;
     flex-direction:column;
     justify-content:space-evenly;
     font-size:2rem;
     align-items:center;
+    background:#87CEFA;
 }

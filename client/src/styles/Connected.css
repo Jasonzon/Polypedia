@@ -7,12 +7,20 @@
 .button-connected {
     padding:0 2.5rem;
     margin:1rem;
+    background:#87CEFA;
+    cursor:pointer;
+    border:0;
+    border-radius:.3rem;
 }
+
+.button-connected:hover {
+    background: #87C5FA;
+}
+
 
 .user-page {
     width:clamp(500px, 70vw + 1rem, 900px);
     height:clamp(400px, 65vh + 1rem, 700px);
-    border:solid black .2rem;
     border-radius:1rem;
     margin:0 auto;
     position:relative;
@@ -23,6 +31,7 @@
     font-size:2rem;
     align-items:center;
     margin-bottom:3rem;
+    background: #87CEFA;
 }
 
 .user-page h2, .user-page h3 {

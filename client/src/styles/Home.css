@@ -39,14 +39,14 @@
 
 .info {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
   margin:0 1rem;
   padding:0 1rem;
-  border:.125rem solid black;
   border-radius:2rem;
   display:flex;
   flex-direction:row;
   text-align:justify;
+  background:#87CEFA;
 }
 
 .last-list {
@@ -69,8 +69,8 @@
 
 .submit-home {
   margin-left:.3rem;
-  height:2.2rem;
-  transform:translateY(45%);
+  height:2.28rem;
+  transform:translateY(46%);
 }
 
 .input-home {
@@ -81,4 +81,18 @@
   margin-top:0rem;
   transform:translateY(45%);
   margin-left:.5rem;
+  background: #87CEFA;
+  border:0;
+  border-radius:.3rem;
+}
+
+.input-home:hover, .submit-home:hover {
+  background: #87C5FA;
+}
+
+.submit-home {
+  background: #87CEFA;
+  border:0;
+  border-radius:.3rem;
+  cursor:pointer;  
 }

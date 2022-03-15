@@ -24,15 +24,15 @@ function List({path, user, setUser, isConnected, setIsConnected}) {
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="title-flex">
                 <h1>Ici retrouvez toutes les listes disponibles sur le site</h1>
-                {isConnected ? (
+                {isConnected ? ( <div className="flexadd"><h2>Ajouter</h2>
                 <Link to="/lists/add"><div className="add" title="ajouter">
                     <div className="vertical"></div>
                     <div className="horizontal"></div>
-                </div> </Link> ) : ( 
+                </div> </Link></div> ) : ( <div className="flexadd"><h2>Ajouter</h2>
                 <div className="add-disabled" title="vous devez être connecté">
                     <div className="vertical-disabled"></div>
                     <div className="horizontal-disabled"></div>
-                </div> )}
+                </div></div> )}
             </div>
             <ul className="list-list">
                 {lists.map(({list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) => 

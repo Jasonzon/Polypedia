@@ -1,7 +1,8 @@
 .listitem {
-    border:solid black .1rem;
+    background:#87CEFA;
     border-radius:1rem;
     padding:.2rem 1.5rem;
+    font-weight:600;
 }
 
 .stats {
@@ -22,7 +23,7 @@
 }
 
 .listitem h2:hover {
-    color:#87CEFA;
+    color:white;
     cursor:pointer;
     border-bottom: .2rem solid #87CEFA;
 }
