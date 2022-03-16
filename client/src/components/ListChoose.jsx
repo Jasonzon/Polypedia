@@ -41,7 +41,7 @@ function ListChoose({user, setUser, isConnected, setIsConnected}) {
     useEffect(() => getLists(),[list])
     return (
         <div>
-        {list.includes(parseInt(id)) ? <ListView id={id} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} list_name={L.list_name} list_color={L.list_color} list_theme={L.list_theme} list_year={L.list_year} list_city={L.list_city} list_description={L.list_description} polyuser_id={L.polyuser_id}/> : <Error />}
+        {list.includes(parseInt(id)) || list.length === 0 ? <ListView id={id} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} list_name={L.list_name} list_color={L.list_color} list_theme={L.list_theme} list_year={L.list_year} list_city={L.list_city} list_description={L.list_description} polyuser_id={L.polyuser_id}/> : <Error />}
         </div>
     )
 }

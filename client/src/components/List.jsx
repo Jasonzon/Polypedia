@@ -6,7 +6,6 @@ import { Link} from 'react-router-dom'
 
 function List({path, user, setUser, isConnected, setIsConnected}) {
     const [lists, setLists] = useState([])
-    console.log(path)
     async function getLists() {
         const response = await fetch(`http://localhost:5000/listes/${path}`, {
             method:"GET"
@@ -35,9 +34,9 @@ function List({path, user, setUser, isConnected, setIsConnected}) {
                 </div></div> )}
             </div>
             <ul className="list-list">
-                {lists.map(({list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) => 
+                {lists.map(({polyuser_id, list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) => 
                     <li key={list_name}>
-                        <ListItem style={""} list_id={list_id} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} />
+                        <ListItem style={""} polyuser_id={polyuser_id} user={user} list_id={list_id} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} />
                     </li>
                 )}
             </ul>

@@ -3,6 +3,7 @@
     border-radius:1rem;
     padding:.2rem 1.5rem;
     font-weight:600;
+    height:100%;
 }
 
 .stats {
@@ -30,4 +31,44 @@
 
 a {
     color:black;
+}
+
+.flex-listitem {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listitem-vertical {
+    background:black;
+    width:10%;
+    height:80%;
+    border-radius:.5rem;
+}
+
+.listitem-horizontal {
+    background:black;
+    width:80%;
+    height:10%;
+    border-radius:.5rem;   
+}
+
+.listitem-vertical, .listitem-horizontal{
+    position:absolute;
+    inset:0;
+    margin: auto;
+}
+
+.cross {
+    position:relative;
+    width:3rem;
+    height:3rem;
+    transform:rotate(45deg) translate(20%, 20%);
+    cursor:pointer;
+}
+
+.cross-flex .little-text {
+    position:absolute;
+    transform:translate(-95%, -120%);
+    width:10rem;
 }

@@ -2,7 +2,7 @@ import "../styles/ListItem.css"
 import {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 
-function ListItem({style, list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) {
+function ListItem({user, polyuser_id, style, list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) {
     const [infos, setInfos] = useState({
         color:"",
         theme:"",
@@ -35,10 +35,31 @@ function ListItem({style, list_id, list_name, list_color, list_theme, list_city,
     useEffect(() => {
         getInfos()
     },[list_city, list_theme, list_color])
+
+    const [confirm, setConfirm] = useState("")
+
+    async function deleteList() {
+        console.log(confirm)
+        if (confirm !== "") {
+            const response = await fetch(`http://localhost:5000/listes/${list_id}`, {
+                method: "DELETE"
+            })
+            window.location.reload(false)
+        }
+        else {
+            setConfirm("recliquez pour supprimer")
+        }
+    }
     
     return (
         <div className={`listitem ${style}`}>
-            <Link to={"/lists/id/" + list_id}><h2>{list_name}</h2></Link>
+            <div className="flex-listitem">
+                <Link to={"/lists/id/" + list_id}><h2>{list_name}</h2></Link>
+                {user && ( user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <div className="cross-flex"><div className="cross" onClick={deleteList}>
+                    <div className="listitem-vertical"></div>
+                    <div className="listitem-horizontal"></div>
+                </div> <span className="little-text">{confirm}</span> </div>  : null }
+            </div>
             <h3>{list_year}</h3>
             <div className="stats">
                 <span>Ville: {infos.city}</span>
