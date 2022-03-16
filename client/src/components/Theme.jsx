@@ -48,16 +48,20 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
             <div className="color-div">
                 <div className="color-table">
                     <table>
+                        <thead>
                         <tr>
                             <td>Theme</td>
                             <td>Listes</td>
                         </tr>
+                        </thead>
+                        <tbody>
                         {themes.map(({theme_name, theme_id}) =>
-                            <tr>
+                            <tr key={theme_name}>
                                 <td>{theme_name}</td>
                                 <td><button className="browse" onClick={() => showLists(theme_id)}>Chercher</button></td>         
                             </tr>
                         )}
+                        </tbody>
                     </table>
                 </div>
                 <ul className="color-list">

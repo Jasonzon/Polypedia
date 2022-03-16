@@ -39,7 +39,7 @@ function Home({user, setUser, isConnected, setIsConnected}) {
           <input onChange={(e)=>setSelect(e.target.value)} value={select} className="input-home" type="search" name="modelsearch" list="data-home"></input>
             <datalist id="data-home">
                 {listList.map((obj) => 
-                    <option value={Object.values(obj)[1]}></option>
+                    <option value={Object.values(obj)[1]} key={Object.values(obj)[0]}></option>
                 )}
             </datalist>
           <button className="submit-home" onClick={() => navigate(`/lists/name/${select}`)}>Chercher</button>

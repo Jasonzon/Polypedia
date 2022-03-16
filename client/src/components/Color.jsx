@@ -9,6 +9,8 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     const [colors, setColors] = useState([])
     const [colorList, setColorList] = useState([])
 
+    const [confirm, setConfirm] = useState("")
+
     async function getColors() {
         const response = await fetch("http://localhost:5000/color", {
             method: "GET"
@@ -29,6 +31,12 @@ function Color({user, setUser, isConnected, setIsConnected}) {
         setColorList(parseRes)
     }
 
+    async function deleteColor(color_id) {
+        const response = await fetch(`http://localhost:5000/color/id/${color_id}`, {
+            method: "DELETE"
+        })
+    }
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
@@ -47,16 +55,22 @@ function Color({user, setUser, isConnected, setIsConnected}) {
             <div className="color-div">
                 <div className="color-table">
                     <table>
+                        <thead>
                         <tr>
                             <td>Couleur</td>
                             <td>Listes</td>
+                            <td>Supprimer</td>
                         </tr>
+                        </thead>
+                        <tbody>
                         {colors.map(({color_name, color_id}) =>
-                            <tr>
+                            <tr key={color_name}>
                                 <td>{color_name}</td>
-                                <td><button className="browse" onClick={() => showLists(color_id)}>Chercher</button></td>         
+                                <td><button className="browse" onClick={() => showLists(color_id)}>Chercher</button></td>
+                                <td><button className="browse" onClick={() => deleteColor(color_id)}>Supprimer</button></td>         
                             </tr>
                         )}
+                        </tbody>
                     </table>
                 </div>
                 <ul className="color-list">

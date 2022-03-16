@@ -33,7 +33,9 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
     }
 
     useEffect(() => {
-        getInfos()
+        if (list_city && list_theme && list_color) {
+            getInfos()
+        }
     },[list_city, list_theme, list_color])
 
     const [confirm, setConfirm] = useState("")

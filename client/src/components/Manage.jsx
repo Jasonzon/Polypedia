@@ -15,7 +15,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
 
     useEffect(() => {
         getUsers()
-    },[changeRole])
+    },[])
 
     async function changeRole(polyuser_id, polyuser_role) {
         const newRole = polyuser_role === "user" ? "admin" : "user"
@@ -26,7 +26,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
                 role: newRole
             })
         })
-        
+        getUsers()
     }
 
     return (
@@ -36,20 +36,24 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
                 <h1>Gérer les utilisateurs</h1>
             </div>
             <table>
+                <thead>
                 <tr>
                     <td>ID</td>
                     <td>Mail</td>
                     <td>Pseudo</td>
                     <td>Rôle</td>
                 </tr>
+                </thead>
+                <tbody>
                 {users.map(({polyuser_id, polyuser_mail, polyuser_name, polyuser_role, polyuser_description, polyuser_password}) =>
-                    <tr>
+                    <tr key={polyuser_id}>
                         <td>{polyuser_id}</td>
                         <td>{polyuser_mail}</td>
                         <td>{polyuser_name}</td>
                         <td><button className="toggle" disabled={polyuser_id === user.polyuser_id} onClick={() => changeRole(polyuser_id, polyuser_role)}>{polyuser_role}</button></td>         
                     </tr>
                 )}
+                </tbody>
             </table>
         </div>
     )

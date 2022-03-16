@@ -42,7 +42,11 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
         })
     }
 
-    useEffect(() => getList(),[polyuser_id, list_theme, list_city, list_year])
+    useEffect(() => {
+        if (polyuser_id && list_theme && list_city && list_year) {
+            getList()
+        }
+    },[polyuser_id, list_theme, list_city, list_year])
 
     return (
         <div>

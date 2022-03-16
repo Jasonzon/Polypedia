@@ -48,16 +48,20 @@ function City({user, setUser, isConnected, setIsConnected}) {
             <div className="color-div">
                 <div className="color-table">
                     <table>
+                        <thead>
                         <tr>
                             <td>Ville</td>
                             <td>Listes</td>
                         </tr>
+                        </thead>
+                        <tbody>
                         {cities.map(({city_name, city_id}) =>
-                            <tr>
+                            <tr key={city_name}>
                                 <td>{city_name}</td>
                                 <td><button className="browse" onClick={() => showLists(city_id)}>Chercher</button></td>         
                             </tr>
                         )}
+                        </tbody>
                     </table>
                 </div>
                 <ul className="color-list">

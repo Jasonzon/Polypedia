@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {useEffect} from "react"
 
 function Header({user, setUser, isConnected, setIsConnected}) {
+
     const checkAuthenticated = async () => {
         try {
             const res = await fetch("http://localhost:5000/auth/verify", {
@@ -12,6 +13,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
             const parseRes = await res.json()
             if (parseRes) { 
                 setIsConnected(true)
+                await getUser()
             }
             else {
              setIsConnected(false)
@@ -20,7 +22,6 @@ function Header({user, setUser, isConnected, setIsConnected}) {
         } catch (err) {
             console.error(err.message)
         }
-        await getUser()
     }
 
     async function getUser() {
@@ -33,7 +34,11 @@ function Header({user, setUser, isConnected, setIsConnected}) {
         setUser(parseRes)
     }
 
-    useEffect(() => checkAuthenticated(),[])
+    useEffect(() => {
+        if (localStorage.token) {
+            checkAuthenticated()
+        }
+    },[])
 
     return (
         <div className="header">

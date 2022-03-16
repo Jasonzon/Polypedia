@@ -18,7 +18,7 @@ function ListChoose({path, user, setUser, isConnected, setIsConnected}) {
     })
 
     const [list, setList] = useState([])
-
+    
     async function getList() {
         const response = await fetch("http://localhost:5000/listes", {
             method: "GET"
@@ -27,10 +27,9 @@ function ListChoose({path, user, setUser, isConnected, setIsConnected}) {
         setList(parseRes.slice("").map((object) => 
             object.list_id
         ))
+        getLists()
     }
-
-    useEffect(() =>  getList(),[])
-
+ 
     const [parseRes_city, setParseRes_city] = useState(0)
     const [parseRes_color, setParseRes_color] = useState(0)
     const [parseRes_theme, setParseRes_theme] = useState(0)
@@ -60,18 +59,21 @@ function ListChoose({path, user, setUser, isConnected, setIsConnected}) {
         setL({
             list_id:parseInt(id),
             list_name:parseRes.list_name,
-            list_theme:parseRes_theme.theme_name,
+            list_theme:parseRestheme.theme_name,
             list_year:parseRes.list_year,
-            list_color:parseRes_color.color_name,
+            list_color:parseRescolor.color_name,
             polyuser_id:parseRes.polyuser_id,
             list_description:parseRes.list_description,
-            list_city:parseRes_city.city_name      
+            list_city:parseRescity.city_name      
         })
     }
+    
 
-    useEffect(() => getLists(),[list])
+
+    useEffect(() =>  getList(),[])
+
     return (
-        <div> {path === "modify" && L.list_color !== "" ? <ModifList user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} list_name={L.list_name} list_color={L.list_color} list_theme={L.list_theme} list_year={L.list_year} list_city={L.list_city} list_description={L.list_description} polyuser_id={L.polyuser_id}/> : <>
+        <div> {path === "modify" && L.list_color && L.list_theme && L.list_city  ? <ModifList user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} list_name={L.list_name} list_color={L.list_color} list_theme={L.list_theme} list_year={L.list_year} list_city={L.list_city} list_description={L.list_description} polyuser_id={L.polyuser_id}/> : <>
         {list.includes(parseInt(id)) || list.length === 0 ? <ListView id={id} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} list_name={L.list_name} list_color={parseRes_color.color_id} list_theme={parseRes_theme.theme_id} list_year={L.list_year} list_city={parseRes_city.city_id} list_description={L.list_description} polyuser_id={L.polyuser_id}/> : <Error />} </> }
         </div>
     )

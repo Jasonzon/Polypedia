@@ -12,7 +12,7 @@ function Select({value, style, name, user, setUser, isConnected, setIsConnected,
             {value === "theme" ? <input onChange={(e)=>onChange(e)} value={inputs.list_theme} className={`input-user3 ${style}`} type="search" name={name} list={search}></input> : null }
             <datalist id={search}>
                 {list.map((obj) => 
-                    <option value={Object.values(obj)[1]}></option>
+                    <option value={Object.values(obj)[1]} key={Object.values(obj)[0]}></option>
                 )}
             </datalist>
         </div>

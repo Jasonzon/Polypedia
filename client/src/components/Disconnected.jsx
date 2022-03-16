@@ -69,7 +69,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                 {isRegistered ? <button className="button-user" onClick={() => setIsRegistered(false)}>Pas enregistré ? Cliquez ici</button> : (
                     <div className="name">
                         <label>Pseudo</label>
-                        <input onChange={(e)=>onChange(e)} value={name} className="input-user" type="text" id="name" name="name" maxlength="20" required />
+                        <input onChange={(e)=>onChange(e)} value={name} className="input-user" type="text" id="name" name="name" maxLength="20" required />
                     </div>
                 )}
                 {isRegistered ? null : <button onClick={onSubmitForm1} className="submit button-user">OK</button>}
