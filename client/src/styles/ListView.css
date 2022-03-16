@@ -12,3 +12,9 @@
     align-items:center;
     background:#87CEFA;
 }
+
+.infos-view {
+    display:flex;
+    flex-direction: row;
+    gap:5rem;
+}

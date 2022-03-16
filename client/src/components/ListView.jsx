@@ -46,8 +46,16 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
+            <div className="title-flex">
+
+            </div>
             <div className="list-view">
                 <h1>{list_name}</h1>
+                <div className="infos-view">
+                    <h3>Ville : {infos.city}</h3>
+                    <h3>Couleur : {infos.color}</h3>
+                    <h3>Thème : {infos.theme}</h3>
+                </div>
                 <p>{list_description}</p>
                 <p>Par {infos.polyuser}</p>
             </div>

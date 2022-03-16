@@ -32,7 +32,8 @@ router.get("/name/:id", async (req,res) => {
     try {
         const {id} = req.params
         const theme = await pool.query("SELECT * FROM theme WHERE theme_name = $1",[id])
-        res.json(theme.rows[0])
+        console.log(theme)
+        res.json(theme.rows)
     } catch (err) {
         console.error(err.message)
     }

@@ -14,26 +14,12 @@ import ListChoose from "./ListChoose"
 import ModifUser from "./ModifUser"
 import ListSpec from './ListSpec'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import {useState, Fragment, useEffect} from "react"
+import {useState, Fragment} from "react"
 
 function Main() {
     const [user, setUser] = useState({})
     const [isConnected, setIsConnected] = useState(false)
-    const [list, setList] = useState([])
 
-    async function getList() {
-        const response = await fetch("http://localhost:5000/listes", {
-            method: "GET"
-        })
-        const parseRes = await response.json()
-        setList(parseRes.slice("").map((object) => 
-            object.list_id
-        ))
-    }
-
-    useEffect(() => {
-        getList()
-    },[])
   return (
     <Fragment>
         <Router>
@@ -51,7 +37,7 @@ function Main() {
                 <Route exact path="/cities/add" element={<AddCity user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/colors/add" element={<AddColor user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/themes/add" element={<AddTheme user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
-                {list.length === 0 ? null : <Route exact path="/lists/id/:id" element={<ListChoose list={list} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} /> }
+                <Route exact path="/lists/id/:id" element={<ListChoose user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} /> 
                 <Route path="*" element={<Error />} />
             </Routes>
         </Router>

@@ -1,7 +1,6 @@
 .big-form {
     width:clamp(100px, 70vw + 1rem, 800px);
-    height:clamp(250px, 55vh + 1rem, 700px);
-    border:solid black .2rem;
+    height:clamp(250px, 70vh + 1rem, 700px);
     border-radius:1rem;
     margin:0 auto;
     position:relative;
@@ -12,6 +11,7 @@
     font-size:2rem;
     align-items:center;
     overflow:auto;
+    background: #87CEFA;
 }
 
 .list-form {
@@ -26,6 +26,10 @@
     justify-content: space-evenly;
     height:100%;
     padding:0 3rem;
+}
+
+.flex-column span {
+    margin-left:1rem;
 }
 
 .input-user2 {
@@ -48,6 +52,11 @@
 .button-user2 {
     width:60%;
     margin-top:.5rem;
+    background:#009EE0;
+}
+
+.button-user2:hover {
+    background:#13a6e6;
 }
 
 .submit {

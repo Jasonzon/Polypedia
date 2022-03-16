@@ -57,3 +57,7 @@ select:-webkit-autofill {
   -webkit-text-fill-color: black !important;
   border:.125rem solid #009EE0;
 }
+
+.input-user2, .input-user3 {
+    border:#009EE0;
+}

@@ -26,13 +26,13 @@ router.get("/id/:id", async (req,res) => {
     }
 })
 
-//get a color by id
+//get a color by name
 
 router.get("/name/:id", async (req,res) => {
     try {
         const {id} = req.params
         const color = await pool.query("SELECT * FROM color WHERE color_name = $1",[id])
-        res.json(color.rows[0])
+        res.json(color.rows)
     } catch (err) {
         console.error(err.message)
     }
