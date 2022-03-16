@@ -1,6 +1,7 @@
 import "../styles/ListView.css"
 import {useState, useEffect} from "react"
 import Header from "./Header"
+import {useNavigate} from "react-router-dom"
 
 function ListView({id, user, setUser, isConnected, setIsConnected, list_name, list_color, polyuser_id, list_theme, list_city, list_year, list_description}) {
     const [infos, setInfos] = useState({
@@ -10,13 +11,14 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
         polyuser:""
     })
 
+    const navigate = useNavigate()
+
     async function getList() {
         const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
             method: "GET"
         })
-        
         const parseRes_city = await response_city.json()
-        console.log(parseRes_city)
+
         const response_theme = await fetch(`http://localhost:5000/themes/id/${list_theme}`,{
             method: "GET"
         })
@@ -38,7 +40,6 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
             city: parseRes_city.city_name,
             polyuser: parseRes_user.polyuser_name
         })
-        console.log("infos",infos)
     }
 
     useEffect(() => getList(),[polyuser_id, list_theme, list_city, list_year])
@@ -58,6 +59,7 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
                 </div>
                 <p>{list_description}</p>
                 <p>Par {infos.polyuser}</p>
+                {user && (user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <button className="button-user modif" onClick={() => navigate(`/lists/modify/id/${id}`)}>Modifier</button> : null }
             </div>
         </div>
     )

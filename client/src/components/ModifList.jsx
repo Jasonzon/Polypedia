@@ -1,20 +1,21 @@
-import "../styles/AddList.css"
+import "../styles/ModifList.css"
 import Header from "./Header"
 import Select from "./Select"
 import {useState, useEffect} from "react"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 
-function AddList({user, setUser, isConnected, setIsConnected}) {
+function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_color, list_theme, list_year, list_description, list_city}) {
 
     const navigate = useNavigate()
+    const {id} = useParams()
 
     const [inputs, setInputs] = useState({
-        list_name:"",
-        list_year:"",
-        list_description:"",
-        list_city:"",
-        list_theme:"",
-        list_color:""
+        list_name:list_name,
+        list_year:list_year,
+        list_description:list_description,
+        list_city:list_city,
+        list_theme:list_theme,
+        list_color:list_color
     })
 
     const onChange = (e) => {
@@ -153,14 +154,14 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
                 user:user.polyuser_id
             }
 
-            const response_list = await fetch("http://localhost:5000/listes", {
-                method: "POST",
+            const response_list = await fetch(`http://localhost:5000/listes/${id}`, {
+                method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body_list)
             })
             
-            const parseRes_list = await response_list.json()
-            goNav(parseRes_list.list_id)
+            await goNav(id)
+            window.location.reload(false);
         }
         else {
             if (newCity === "") {
@@ -209,7 +210,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
-            <h1>Ajouter une liste</h1>
+            <h1>Modifier "{list_name}"</h1>
             <div className="big-form">
                 <div className="list-form">
                     <div className="flex-column">
@@ -241,4 +242,4 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     )
 }
 
-export default AddList
+export default ModifList

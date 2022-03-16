@@ -11,10 +11,16 @@
     font-size:2rem;
     align-items:center;
     background:#87CEFA;
+    overflow:auto;
 }
 
 .infos-view {
     display:flex;
     flex-direction: row;
     gap:5rem;
+}
+
+.modif {
+    width:7rem;
+    margin-bottom:.5rem;
 }

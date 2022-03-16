@@ -13,6 +13,7 @@ import AddTheme from "./AddTheme"
 import ListChoose from "./ListChoose"
 import ModifUser from "./ModifUser"
 import ListSpec from './ListSpec'
+import ModifList from "./ModifList"
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import {useState, Fragment} from "react"
 
@@ -37,7 +38,8 @@ function Main() {
                 <Route exact path="/cities/add" element={<AddCity user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/colors/add" element={<AddColor user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
                 <Route exact path="/themes/add" element={<AddTheme user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
-                <Route exact path="/lists/id/:id" element={<ListChoose user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} /> 
+                <Route exact path="/lists/id/:id" element={<ListChoose path={"create"} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />
+                <Route exact path="/lists/modify/id/:id" element={<ListChoose path={"modify"} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} />} />  
                 <Route path="*" element={<Error />} />
             </Routes>
         </Router>
