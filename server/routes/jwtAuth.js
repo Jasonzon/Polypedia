@@ -61,18 +61,14 @@ router.post("/login", validInfo, async (req,res) => {
         
         const {mail, password} = req.body
         const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_mail = $1",[mail])
-
-        if (user.rows.length === 0) {
-            return res.status(401).send("Password or Email is incorrect")
-        }
-
         const validPassword = await bcrypt.compare(password,user.rows[0].polyuser_password)
+
         if (!validPassword) {
-            return res.status(401).send("Password or Email is incorrect")
+            return res.json({valid: false})
         }
 
         const token = await jwtGenerator(user.rows[0].polyuser_id)
-        res.json({token})
+        res.json({token, valid:true})
 
     } catch (err) {
         console.error(err.message)

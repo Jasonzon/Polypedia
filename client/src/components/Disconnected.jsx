@@ -75,25 +75,50 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
     const onSubmitForm2 = async (e) => {
         e.preventDefault()
         try {
-            if (mail !== "" && password !== "") {
-                setStylePassword("")
+
+            if (mail !== "") {
                 setStyleMail("")
-                const body = {mail, password}
-                const response = await fetch("http://localhost:5000/auth/login", {
-                    method: "POST",
-                    headers: {"Content-Type" : "application/json"},
-                    body: JSON.stringify(body)
+                const res = await fetch(`http://localhost:5000/users/mail/${mail}`, {
+                    method: "GET"
                 })
-                const parseRes = await response.json()
-                localStorage.setItem("token",parseRes.token)
-                setAuth(true)
+                const parse = await res.json()
+
+                if (parse.length !== 0 && password !== "") {
+                    setStylePassword("")
+                    const body = {mail, password}
+                    const response = await fetch("http://localhost:5000/auth/login", {
+                        method: "POST",
+                        headers: {"Content-Type" : "application/json"},
+                        body: JSON.stringify(body)
+                    })
+                    const parseRes = await response.json()
+                    if (parseRes.valid) {
+                        localStorage.setItem("token",parseRes.token)
+                        setAuth(true)
+                    }
+                    else {
+                        setStylePassword("red-border")
+                    }
+                }
+                else {
+                    if (password === "") {
+                        setStylePassword("red-border ok")
+                    }
+                    else {
+                        setStylePassword("")
+                    }
+                    if (parse.length === 0) {
+                        setStyleMail("red-border non")
+                    }
+                }
             }
             else {
-                if (mail === "") {
-                    setStyleMail("red-border ok")
-                }
+                setStyleMail("red-border ok")
                 if (password === "") {
                     setStylePassword("red-border ok")
+                }
+                else {
+                    setStylePassword("")
                 }
             }
 
@@ -110,12 +135,12 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                 <div className="mail">
                     <label>Mail</label>
                     <input onChange={(e)=>onChange(e)} value={mail} className={`input-user ${styleMail}`} type="text" id="mail" name="mail" required />
-                    {styleMail === "" ? null : <> {styleMail === "red-border" ? <span className="little-text">Cette adresse mail existe deja</span> : <span className="little-text">Veuillez remplir le formulaire</span> } </> }
+                    {styleMail === "" ? null : <> {styleMail === "red-border" ? <span className="little-text">Cette adresse mail existe deja</span> : <> {styleMail === "red-border ok" ? <span className="little-text">Veuillez remplir le formulaire</span> : <span className="little-text">Mail incorrect</span> } </> } </> }
                 </div>
                 <div className="password">
                     <label>Password</label>
-                    <input onChange={(e)=>onChange(e)} value={password} className={`input-user ${stylePassword}`} type="password" id="password" name="password" required />
-                    {stylePassword === "" ? null : <span className="little-text">Veuillez remplir le formulaire</span>}
+                    <input onChange={(e)=>onChange(e)} value={password} className={`input-user ${stylePassword}`} type="password" name="password" required />
+                    {stylePassword === "" ? null : <> {stylePassword === "red-border" ? <span className="little-text">Mot de passe incorrect</span> : <span className="little-text">Veuillez remplir le formulaire</span> } </> }
                 </div>
                 {isRegistered ? <button onClick={onSubmitForm2} className="submit button-user">OK</button> : null}
                 {isRegistered ? <button className="button-user" onClick={() => setIsRegistered(false)}>Pas enregistré ? Cliquez ici</button> : (
