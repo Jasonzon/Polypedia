@@ -47,6 +47,7 @@
   flex-direction:row;
   text-align:justify;
   background:#87CEFA;
+  min-width:600px;
 }
 
 .last-list {
@@ -95,4 +96,8 @@
   border:0;
   border-radius:.3rem;
   cursor:pointer;  
+}
+
+.home-flex h2 {
+  white-space: nowrap;
 }

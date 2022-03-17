@@ -72,3 +72,6 @@
     background: #87C5FA;
 }
   
+.title-flex h1 {
+    white-space: nowrap;
+}

@@ -32,7 +32,7 @@ router.get("/mail/:id", async (req,res) => {
     try {
         const {id} = req.params
         const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_mail = $1",[id])
-        res.json(user.rows[0])
+        res.json(user.rows)
     } catch (err) {
         console.error(err.message)
     }

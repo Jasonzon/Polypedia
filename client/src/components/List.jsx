@@ -22,7 +22,7 @@ function List({path, user, setUser, isConnected, setIsConnected}) {
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="title-flex">
-                <h1>Ici retrouvez toutes les listes disponibles sur le site</h1>
+                <h1>Toutes les listes : </h1>
                 {isConnected ? ( <div className="flexadd"><h2>Ajouter</h2>
                 <Link to="/lists/add"><div className="add" title="ajouter">
                     <div className="vertical"></div>

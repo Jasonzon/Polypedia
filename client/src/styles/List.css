@@ -1,6 +1,5 @@
 .list-list {
     list-style-type: none; 
-    display:flex;
     flex-direction:column;
     justify-content:space-evenly;
     padding:0 3rem;
@@ -81,5 +80,5 @@
 
 .flexadd h2 {
     margin-right:.75rem;
-    margin-top:2rem;
+    margin-top:1.85rem;
 }

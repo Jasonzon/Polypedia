@@ -35,7 +35,7 @@ function AddCity({user, setUser, isConnected, setIsConnected}) {
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="add-name">
                 <label>Ajouter une ville :</label>
-                <input onChange={(e)=>setInput(e.target.value)} value={input} className={`input-user2 ${style}`} type="text" name="name" required />
+                <input onChange={(e)=>setInput(e.target.value)} value={input} className={`blue-back input-user2 ${style}`} type="text" name="name" required />
                 {style === "" ? null : <span className="little-text">cette ville existe déjà</span>}
                 <button onClick={submitCity} className="submit button-user2">OK</button>
             </div>

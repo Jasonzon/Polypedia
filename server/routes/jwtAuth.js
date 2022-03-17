@@ -33,6 +33,27 @@ router.post("/register", validInfo, async (req,res )=> {
     }
 })
 
+router.put("/register", validInfo, async (req,res )=> {
+    try {
+        const {name, mail, password, description, id} = req.body
+
+        const saltRound = 10
+        const salt = await bcrypt.genSalt(saltRound)
+        const bcryptPassword = await bcrypt.hash(password, salt)
+
+        const newUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_password = $3, polyuser_description = $4 WHERE polyuser_id = $5 RETURNING *",[name, mail, bcryptPassword, description, id])
+
+        const token = jwtGenerator(newUser.rows[0].polyuser_id)
+        res.json({token})
+
+
+        
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send("Server error")
+    }
+})
+
 //login route
 
 router.post("/login", validInfo, async (req,res) => {

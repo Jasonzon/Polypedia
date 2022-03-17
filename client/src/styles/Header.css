@@ -21,6 +21,7 @@
     color:white;
     border-bottom:solid transparent .15rem;
     margin:0 .8rem;
+    white-space: nowrap;
 }
 
 .link:hover {
