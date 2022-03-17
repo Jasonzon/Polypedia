@@ -25,13 +25,14 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
         try {
 
             if (mail !== "") {
+                setStyleMail("")
                 const res = await fetch(`http://localhost:5000/users/mail/${mail}`, {
                     method: "GET"
                 })
                 const parse = await res.json()
+                console.log(parse)
             
                 if (parse.length === 0 && password !== "" && name !== "") {
-                    setStyleMail("")
                     setStylePassword("")
                     setStylePseudo("")
                     const body = {mail, password, name}
@@ -49,8 +50,14 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                     if (name === "") {
                         setStylePseudo("red-border")
                     }
+                    else {
+                        setStylePseudo("")
+                    }
                     if (password === "") {
-                        setStylePassword("red-border")
+                        setStylePassword("red-border ok")
+                    }
+                    else {
+                        setStylePassword("")
                     }
                     if (parse.length !== 0) {
                         setStyleMail("red-border")
@@ -63,7 +70,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                     setStylePseudo("red-border")
                 }
                 if (password === "") {
-                    setStylePassword("red-border")
+                    setStylePassword("red-border ok")
                 }
             }
 
