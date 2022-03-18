@@ -63,6 +63,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
             </div>
             <div className="color-div">
                 <div className="color-table">
+                {user && user.polyuser_role === "admin" ? <p>Supprimer une couleur entrainera la supression des listes de cette couleur</p> : null }
                     <table>
                         <thead>
                         <tr>

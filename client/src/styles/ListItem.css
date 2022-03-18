@@ -1,9 +1,9 @@
 .listitem {
-    background:#87CEFA;
     border-radius:1rem;
     padding:.2rem 1.5rem;
     font-weight:600;
     height:100%;
+    position:relative;
 }
 
 .stats {
@@ -23,7 +23,7 @@
     border-bottom: .2rem solid transparent;
 }
 
-.listitem h2:hover {
+.blue-link:hover {
     color:white;
     cursor:pointer;
     border-bottom: .2rem solid #87CEFA;
@@ -71,4 +71,25 @@ a {
     position:absolute;
     transform:translate(-95%, -120%);
     width:10rem;
+}
+
+.tick-validation {
+    position:absolute;
+    width:1.75rem;
+    height:1rem;
+    transform:rotate(-45deg) translate(40%, 20%);
+    cursor:pointer;
+    border:5px solid black;
+    right:2.65rem;
+    top:5.5rem;
+    border-right:transparent;
+    border-top:transparent;
+}
+
+.red {
+    background:#DC143C;
+}
+
+.blue {
+    background:#87CEFA;
 }

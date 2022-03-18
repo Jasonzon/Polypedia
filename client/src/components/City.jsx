@@ -63,6 +63,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
             </div>
             <div className="color-div">
                 <div className="color-table">
+                {user && user.polyuser_role === "admin" ? <p>Supprimer une ville entrainera la supression des listes de cette ville</p> : null }
                     <table>
                         <thead>
                         <tr>

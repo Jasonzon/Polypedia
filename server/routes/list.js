@@ -123,9 +123,9 @@ router.post("/", async (req,res) => {
     }
 })
 
-//update a list
+//update list values
 
-router.put("/:id", async (req,res) => {
+router.put("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {name, color, theme, year, city, description} = req.body
@@ -136,9 +136,22 @@ router.put("/:id", async (req,res) => {
     }
 })
 
+//update list validation
+
+router.put("/validation/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const {validation} = req.body
+        const updateList = await pool.query("UPDATE list SET validation = $1 WHERE list_id = $2",[validation, id])
+        res.json("List was updated")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 //delete a list
 
-router.delete("/:id", async (req,res) => {
+router.delete("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const deleteList = await pool.query("DELETE FROM list WHERE list_id = $1",[id])

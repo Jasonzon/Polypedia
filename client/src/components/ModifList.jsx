@@ -154,7 +154,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
                 user:user.polyuser_id
             }
 
-            const response_list = await fetch(`http://localhost:5000/listes/${id}`, {
+            const response_list = await fetch(`http://localhost:5000/listes/id/${id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body_list)

@@ -2,7 +2,7 @@ import "../styles/ListItem.css"
 import {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 
-function ListItem({user, polyuser_id, style, list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) {
+function ListItem({user, polyuser_id, style, list_id, list_name, list_color, list_theme, list_city, list_year, list_description, validation}) {
     const [infos, setInfos] = useState({
         color:"",
         theme:"",
@@ -41,9 +41,8 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
     const [confirm, setConfirm] = useState("")
 
     async function deleteList() {
-        console.log(confirm)
         if (confirm !== "") {
-            const response = await fetch(`http://localhost:5000/listes/${list_id}`, {
+            const response = await fetch(`http://localhost:5000/listes/id/${list_id}`, {
                 method: "DELETE"
             })
             window.location.reload(false)
@@ -52,15 +51,26 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
             setConfirm("recliquez pour supprimer")
         }
     }
+
+    async function addList() {
+        const body = {validation:true}
+        const response = await fetch(`http://localhost:5000/listes/validation/${list_id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        window.location.reload(false)
+    }
     
     return (
-        <div className={`listitem ${style}`}>
+        <div className={validation ? `listitem ${style} blue` : `listitem ${style} red`}>
             <div className="flex-listitem">
-                <Link to={"/lists/id/" + list_id}><h2>{list_name}</h2></Link>
+                {validation ? <Link to={"/lists/id/" + list_id}><h2 className="blue-link">{list_name}</h2></Link> : <h2>{list_name}</h2> }
                 {user && ( user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <div className="cross-flex"><div className="cross" onClick={deleteList}>
                     <div className="listitem-vertical"></div>
                     <div className="listitem-horizontal"></div>
                 </div> <span className="little-text">{confirm}</span> </div>  : null }
+                {!validation && user && user.polyuser_role === "admin" ? <div className="tick-validation" onClick={addList}></div> : null }
             </div>
             <h3>{list_year}</h3>
             <div className="stats">
