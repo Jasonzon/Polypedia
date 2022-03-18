@@ -51,9 +51,9 @@ router.post("/", async (req,res) => {
     }
 })
 
-//update a color
+//update a color by id
 
-router.put("/:id", async (req,res) => {
+router.put("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {name} = req.body
@@ -64,9 +64,9 @@ router.put("/:id", async (req,res) => {
     }
 })
 
-//delete a color
+//delete a color by id
 
-router.delete("/:id", async (req,res) => {
+router.delete("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const deleteColor = await pool.query("DELETE FROM color WHERE color_id = $1",[id])

@@ -53,7 +53,7 @@ router.post("/", async (req,res) => {
 
 //update a city
 
-router.put("/:id", async (req,res) => {
+router.put("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {name} = req.body
@@ -66,7 +66,7 @@ router.put("/:id", async (req,res) => {
 
 //delete a city
 
-router.delete("/:id", async (req,res) => {
+router.delete("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const deleteCity = await pool.query("DELETE FROM city WHERE city_id = $1",[id])

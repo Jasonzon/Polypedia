@@ -9,6 +9,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
 
     const [cities, setCities] = useState([])
     const [cityList, setCityList] = useState([])
+    const [confirm, setConfirm] = useState([])
 
     async function getCities() {
         const response = await fetch("http://localhost:5000/villes", {
@@ -16,6 +17,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setCities(parseRes)
+        setConfirm(cities.slice("").map((city) => false))
     }
 
     useEffect(() => {
@@ -28,6 +30,20 @@ function City({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setCityList(parseRes)
+    }
+
+    async function deleteCity(city_id, index) {
+        if (confirm[index]) {
+            const response = await fetch(`http://localhost:5000/villes/id/${city_id}`, {
+                method: "DELETE"
+            })
+            window.location.reload(false);
+        }
+        else {
+            const confirm2 = cities.slice("").map((city) => false)
+            confirm2[index] = true
+            setConfirm(confirm2)
+        }
     }
 
     return (
@@ -52,13 +68,17 @@ function City({user, setUser, isConnected, setIsConnected}) {
                         <tr>
                             <td>Ville</td>
                             <td>Listes</td>
+                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null }
                         </tr>
                         </thead>
                         <tbody>
-                        {cities.map(({city_name, city_id}) =>
+                        {cities.map(({city_name, city_id}, index) =>
                             <tr key={city_name}>
                                 <td>{city_name}</td>
-                                <td><button className="browse" onClick={() => showLists(city_id)}>Chercher</button></td>         
+                                <td><button className="browse" onClick={() => showLists(city_id)}>Chercher</button></td>  
+                                {user && user.polyuser_role === "admin" ? <>
+                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteCity(city_id,index)}>Supprimer</button></td> :
+                                <td><button className="browse" onClick={() => deleteCity(city_id,index)}>Confirmer</button></td> } </> : null }              
                             </tr>
                         )}
                         </tbody>

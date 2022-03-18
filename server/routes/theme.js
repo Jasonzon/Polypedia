@@ -32,7 +32,6 @@ router.get("/name/:id", async (req,res) => {
     try {
         const {id} = req.params
         const theme = await pool.query("SELECT * FROM theme WHERE theme_name = $1",[id])
-        console.log(theme)
         res.json(theme.rows)
     } catch (err) {
         console.error(err.message)
@@ -54,7 +53,7 @@ router.post("/", async (req,res) => {
 
 //update a theme
 
-router.put("/:id", async (req,res) => {
+router.put("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {name} = req.body
@@ -67,7 +66,7 @@ router.put("/:id", async (req,res) => {
 
 //delete a theme
 
-router.delete("/:id", async (req,res) => {
+router.delete("/id/:id", async (req,res) => {
     try {
         const {id} = req.params
         const deleteTheme = await pool.query("DELETE FROM theme WHERE theme_id = $1",[id])

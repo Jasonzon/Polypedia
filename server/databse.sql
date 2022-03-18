@@ -9,9 +9,9 @@ CREATE TABLE list (
     list_year INT NOT NULL,
     polyuser_id INT NOT NULL,
     list_description VARCHAR(5000) NOT NULL,
-    FOREIGN KEY (list_city) REFERENCES city(city_id),
-    FOREIGN KEY (list_color) REFERENCES color(color_id),
-    FOREIGN KEY (list_theme) REFERENCES theme(theme_id),
+    FOREIGN KEY (list_city) REFERENCES city(city_id) ON DELETE CASCADE,
+    FOREIGN KEY (list_color) REFERENCES color(color_id) ON DELETE CASCADE,
+    FOREIGN KEY (list_theme) REFERENCES theme(theme_id) ON DELETE CASCADE,
     FOREIGN KEY (polyuser_id) REFERENCES polyuser(polyuser_id)
 );
 

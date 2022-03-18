@@ -9,7 +9,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     const [colors, setColors] = useState([])
     const [colorList, setColorList] = useState([])
 
-    const [confirm, setConfirm] = useState("")
+    const [confirm, setConfirm] = useState([])
 
     async function getColors() {
         const response = await fetch("http://localhost:5000/color", {
@@ -17,6 +17,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setColors(parseRes)
+        setConfirm(colors.slice("").map((color) => false))
     }
 
     useEffect(() => {
@@ -31,10 +32,18 @@ function Color({user, setUser, isConnected, setIsConnected}) {
         setColorList(parseRes)
     }
 
-    async function deleteColor(color_id) {
-        const response = await fetch(`http://localhost:5000/color/id/${color_id}`, {
-            method: "DELETE"
-        })
+    async function deleteColor(color_id, index) {
+        if (confirm[index]) {
+            const response = await fetch(`http://localhost:5000/color/id/${color_id}`, {
+                method: "DELETE"
+            })
+            window.location.reload(false);
+        }
+        else {
+            const confirm2 = colors.slice("").map((color) => false)
+            confirm2[index] = true
+            setConfirm(confirm2)
+        }
     }
 
     return (
@@ -59,15 +68,17 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                         <tr>
                             <td>Couleur</td>
                             <td>Listes</td>
-                            <td>Supprimer</td>
+                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null }
                         </tr>
                         </thead>
                         <tbody>
-                        {colors.map(({color_name, color_id}) =>
+                        {colors.map(({color_name, color_id}, index) => 
                             <tr key={color_name}>
                                 <td>{color_name}</td>
                                 <td><button className="browse" onClick={() => showLists(color_id)}>Chercher</button></td>
-                                <td><button className="browse" onClick={() => deleteColor(color_id)}>Supprimer</button></td>         
+                                {user && user.polyuser_role === "admin" ? <>
+                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteColor(color_id,index)}>Supprimer</button></td> :
+                                <td><button className="browse" onClick={() => deleteColor(color_id,index)}>Confirmer</button></td> } </> : null }       
                             </tr>
                         )}
                         </tbody>

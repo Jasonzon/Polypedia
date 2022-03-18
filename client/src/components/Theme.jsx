@@ -9,6 +9,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
 
     const [themes, setThemes] = useState([])
     const [themeList, setThemeList] = useState([])
+    const [confirm, setConfirm] = useState([])
 
     async function getThemes() {
         const response = await fetch("http://localhost:5000/themes", {
@@ -16,6 +17,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setThemes(parseRes)
+        setConfirm(themes.slice("").map((theme) => false))
     }
 
     useEffect(() => {
@@ -28,6 +30,20 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
         })
         const parseRes = await response.json()
         setThemeList(parseRes)
+    }
+
+    async function deleteTheme(theme_id, index) {
+        if (confirm[index]) {
+            const response = await fetch(`http://localhost:5000/themes/id/${theme_id}`, {
+                method: "DELETE"
+            })
+            window.location.reload(false);
+        }
+        else {
+            const confirm2 = themes.slice("").map((theme) => false)
+            confirm2[index] = true
+            setConfirm(confirm2)
+        }
     }
 
     return (
@@ -52,13 +68,17 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                         <tr>
                             <td>Theme</td>
                             <td>Listes</td>
+                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null }
                         </tr>
                         </thead>
                         <tbody>
-                        {themes.map(({theme_name, theme_id}) =>
+                        {themes.map(({theme_name, theme_id}, index) =>
                             <tr key={theme_name}>
                                 <td>{theme_name}</td>
-                                <td><button className="browse" onClick={() => showLists(theme_id)}>Chercher</button></td>         
+                                <td><button className="browse" onClick={() => showLists(theme_id)}>Chercher</button></td>
+                                {user && user.polyuser_role === "admin" ? <>
+                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteTheme(theme_id,index)}>Supprimer</button></td> :
+                                <td><button className="browse" onClick={() => deleteTheme(theme_id,index)}>Confirmer</button></td> } </> : null }                
                             </tr>
                         )}
                         </tbody>
