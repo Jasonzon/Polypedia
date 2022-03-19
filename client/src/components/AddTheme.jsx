@@ -17,7 +17,7 @@ function AddTheme({user, setUser, isConnected, setIsConnected}) {
         const parseRes = await res.json()
         if (parseRes.length === 0 && newInput !== "") {
             setStyle("")
-            const body = {name:newInput}
+            const body = {name:newInput.replace(/[^a-zA-Z0-9_-]/g,'')}
             const response = await fetch("http://localhost:5000/themes", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
@@ -35,7 +35,7 @@ function AddTheme({user, setUser, isConnected, setIsConnected}) {
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="add-name">
                 <label>Ajouter un thème :</label>
-                <input onChange={(e)=>setInput(e.target.value)} value={input} className={`blue-back input-user2 ${style}`} type="text" name="name" required />
+                <input onChange={(e)=>setInput(e.target.value)} value={input.replace(/[^a-zA-Z0-9_-]/g,'')} className={`blue-back input-user2 ${style}`} type="text" name="name" maxLength="20" required />
                 {style === "" ? null : <span className="little-text">ce thème existe déjà</span>}
                 <button onClick={submitTheme} className="submit button-user2">OK</button>
             </div>

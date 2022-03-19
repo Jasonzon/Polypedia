@@ -38,7 +38,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
                     setStyleMail("")
                     setStylePassword("")
                     setStylePseudo("")
-                    const body = {name, mail, description, password, id:user.polyuser_id}
+                    const body = {name:name.replace(/[^a-zA-Z0-9_-]/g,''), mail, description, password, id:user.polyuser_id}
                     const res = await fetch("http://localhost:5000/auth/register", {
                         method: "PUT",
                         headers: {"Content-Type" : "application/json"},
@@ -65,7 +65,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
                 if ((parse.length === 0 || parse[0].polyuser_id === user.polyuser_id) && name !== "") {
                     setStyleMail("")
                     setStylePseudo("")
-                    const body = {name, mail, description}
+                    const body = {name:name.replace(/[^a-zA-Z0-9_-]/g,''), mail, description}
                     const response = await fetch(`http://localhost:5000/users/id/${user.polyuser_id}`, {
                         method: "PUT",
                         headers: {"Content-Type" : "application/json"},
@@ -104,22 +104,22 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
             <div className="user-page">
                 <div className="mail">
                     <label>Pseudo</label>
-                    <input onChange={(e)=>setName(e.target.value)} className={`input-user2 ${stylePseudo}`} value={name}></input>
+                    <input onChange={(e)=>setName(e.target.value)} className={`input-user2 ${stylePseudo}`} value={name.replace(/[^a-zA-Z0-9_-]/g,'')} maxLength="20"></input>
                     {stylePseudo === "" ? null : <span className="little-text">Veuillez remplir le formulaire</span>}
                 </div>
                 <div className="mail">
                     <label>Mail</label>
-                    <input onChange={(e)=>setMail(e.target.value)} className={`input-user2 ${styleMail}`} value={mail}></input>
+                    <input onChange={(e)=>setMail(e.target.value)} className={`input-user2 ${styleMail}`} value={mail} maxLength="30"></input>
                     {styleMail === "" ? null : <> {styleMail === "red-border" ? <span className="little-text">Cette adresse mail existe deja</span> : <span className="little-text">Veuillez remplir le formulaire</span> } </> }
                 </div>
                 <div className="mail">
                     <label>Description</label>
-                    <input onChange={(e)=>setDescription(e.target.value)} className="input-user2" value={description}></input>
+                    <input onChange={(e)=>setDescription(e.target.value)} className="input-user2" value={description} maxLength="250"></input>
                 </div>
                 {pass ? null : <button className="submit button-user" onClick={() => setPass(true)}>Modifier le mot de passe</button> }
                 {pass ?  <div className="mail">
                     <label>Mot de Passe</label>
-                    <input onChange={(e)=>setPassword(e.target.value)} placeholder="Nouveau mot de passe" className={`input-user2 ${stylePassword}`} type="password" autoComplete="new-password"  value={password}></input>
+                    <input onChange={(e)=>setPassword(e.target.value)} placeholder="Nouveau mot de passe" className={`input-user2 ${stylePassword}`} type="password" autoComplete="new-password" value={password} ></input>
                     {stylePassword === "" ? null : <span className="little-text">Veuillez remplir le formulaire</span>}
                         </div> : null}
                 {pass ? <button className="submit button-user" onClick={() => setPass(false)}>Ne pas modifier le mot de passe</button>: null }

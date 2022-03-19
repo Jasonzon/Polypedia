@@ -30,20 +30,24 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                     method: "GET"
                 })
                 const parse = await res.json()
-                console.log(parse)
             
                 if (parse.length === 0 && password !== "" && name !== "") {
                     setStylePassword("")
                     setStylePseudo("")
-                    const body = {mail, password, name}
+                    const body = {mail, password, name:name.replace(/[^a-zA-Z0-9_-]/g,'')}
                     const response = await fetch("http://localhost:5000/auth/register", {
                         method: "POST",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)
                     })
                     const parseRes = await response.json()
-                    localStorage.setItem("token",parseRes.token)
-                    setAuth(true)
+                    if (parseRes.invalid) {
+                        setStyleMail("red-border non")
+                    }
+                    else {
+                        localStorage.setItem("token",parseRes.token)
+                        setAuth(true)
+                    }
 
                 }
                 else {
@@ -141,19 +145,19 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
             <div className="user">
                 <div className="mail">
                     <label>Mail</label>
-                    <input onChange={(e)=>onChange(e)} value={mail} className={`input-user ${styleMail}`} type="text" id="mail" name="mail" required />
+                    <input onChange={(e)=>onChange(e)} value={mail} className={`input-user ${styleMail}`} type="text" id="mail" name="mail" maxLength="30" required />
                     {styleMail === "" ? null : <> {styleMail === "red-border" ? <span className="little-text">Cette adresse mail existe deja</span> : <> {styleMail === "red-border ok" ? <span className="little-text">Veuillez remplir le formulaire</span> : <span className="little-text">Mail incorrect</span> } </> } </> }
                 </div>
                 <div className="password">
                     <label>Password</label>
-                    <input onChange={(e)=>onChange(e)} value={password} className={`input-user ${stylePassword}`} type="password" name="password" required />
+                    <input onChange={(e)=>onChange(e)} value={password} className={`input-user ${stylePassword}`} type="password" name="password" maxLength="20" required />
                     {stylePassword === "" ? null : <> {stylePassword === "red-border" ? <span className="little-text">Mot de passe incorrect</span> : <span className="little-text">Veuillez remplir le formulaire</span> } </> }
                 </div>
                 {isRegistered ? <button onClick={onSubmitForm2} className="submit button-user">OK</button> : null}
                 {isRegistered ? <button className="button-user" onClick={() => setIsRegistered(false)}>Pas enregistré ? Cliquez ici</button> : (
                     <div className="name">
                         <label>Pseudo</label>
-                        <input onChange={(e)=>onChange(e)} value={name} className={`input-user ${stylePseudo}`} type="text" id="name" name="name" maxLength="20" required />
+                        <input onChange={(e)=>onChange(e)} value={name.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user ${stylePseudo}`} type="text" id="name" name="name" maxLength="20" required />
                         {stylePseudo === "" ? null : <span className="little-text">Veuillez choisir un pseudo</span>}
                     </div>
                 )}

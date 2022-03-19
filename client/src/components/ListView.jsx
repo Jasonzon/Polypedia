@@ -11,6 +11,8 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
         polyuser:""
     })
 
+    const [charged, setCharged] = useState(false)
+
     const navigate = useNavigate()
 
     async function getList() {
@@ -48,12 +50,19 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
         }
     },[polyuser_id, list_theme, list_city, list_year])
 
+    useEffect(() => {
+        if (infos.city !== "" && infos.color !== "" && infos.theme !== "" && infos.polyuser !== "") {
+            setCharged(true)
+        }
+    }, [infos])
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="title-flex">
 
             </div>
+            {charged ? 
             <div className="list-view">
                 <h1>{list_name}</h1>
                 <div className="infos-view">
@@ -64,7 +73,7 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
                 <p>{list_description}</p>
                 <p>Par {infos.polyuser}</p>
                 {user && (user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <button className="button-user modif" onClick={() => navigate(`/lists/modify/id/${id}`)}>Modifier</button> : null }
-            </div>
+            </div> : <div className="lds-dual-ring"></div> }
         </div>
     )
 }

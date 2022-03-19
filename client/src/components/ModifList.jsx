@@ -112,7 +112,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
             setStyleDescription("")
 
             if (parseRes_city.length === 0) {
-                const body_city = {name:newCity}
+                const body_city = {name:newCity.replace(/[^a-zA-Z0-9_-]/g,'')}
                 const res_city = await fetch("http://localhost:5000/villes", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -123,7 +123,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
             }
 
             if (parseRes_color.length === 0) {
-                const body_color = {name:newColor}
+                const body_color = {name:newColor.replace(/[^a-zA-Z0-9_-]/g,'')}
                 const res_color = await fetch("http://localhost:5000/color", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -134,7 +134,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
             }
 
             if (parseRes_theme.length === 0) {
-                const body_theme = {name:newTheme}
+                const body_theme = {name:newTheme.replace(/[^a-zA-Z0-9_-]/g,'')}
                 const res_theme = await fetch("http://localhost:5000/themes", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -145,8 +145,8 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
             }
 
             const body_list = {
-                name:newName,
-                year:newYear,
+                name:newName.replace(/[^a-zA-Z0-9_-]/g,''),
+                year:parseInt(newYear.toString().replace(/[^0-9]/g,'')),
                 description:newDescription,
                 theme:THEME,
                 color:COLOR,
@@ -222,9 +222,9 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
                         <label>Couleur : </label>
                     </div>
                     <div className="flex-column">
-                        <input onChange={(e)=>onChange(e)} value={inputs.list_name} className={`input-user2 ${styleName}`} type="text" id="input_name" name="list_name" required />
+                        <input onChange={(e)=>onChange(e)} value={inputs.list_name.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user2 ${styleName}`} type="text" id="input_name" name="list_name" maxLength="20" required />
                         {styleName === "" ? null : <span className="little-text">Vous devez rentrer un nom</span>}
-                        <input onChange={(e)=>onChange(e)} value={inputs.list_year} className={`input-user2 ${styleYear}`} type="text" id="input_year" name="list_year" required />
+                        <input onChange={(e)=>onChange(e)} value={parseInt(inputs.list_year.toString().replace(/[^0-9.]/g, ''))} className={`input-user2 ${styleYear}`} type="text" id="input_year" name="list_year" maxLength="4" required />
                         {styleYear === "" ? null : <span className="little-text">Vous devez rentrer une année</span>}
                         <input onChange={(e)=>onChange(e)} value={inputs.list_description} className={`input-user2 ${styleDescription}`} type="text" id="input_description" name="list_description" required />
                         {styleDescription === "" ? null : <span className="little-text">Vous devez rentrer une description</span>}

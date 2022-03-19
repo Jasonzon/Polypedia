@@ -39,6 +39,11 @@ a {
     justify-content: space-between;
 }
 
+.cross:hover .listitem-vertical, 
+.cross:hover .listitem-horizontal {
+    background:white;
+} 
+
 .listitem-vertical {
     background:black;
     width:10%;
@@ -86,10 +91,20 @@ a {
     border-top:transparent;
 }
 
+.tick-validation:hover {
+    border:5px solid white;
+    border-right:transparent;
+    border-top:transparent;
+}
+
 .red {
     background:#DC143C;
 }
 
 .blue {
     background:#87CEFA;
+}
+
+.transparent {
+    color:transparent;
 }

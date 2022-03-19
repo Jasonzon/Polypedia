@@ -9,6 +9,8 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
         city:""
     })
 
+    const [charged, setCharged] = useState(false)
+
     async function getInfos() {
         const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
             method: "GET"
@@ -38,6 +40,12 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
         }
     },[list_city, list_theme, list_color])
 
+    useEffect(() => {
+        if (infos.color !== "" && infos.city !== "" && infos.theme !== "") {
+            setCharged(true)
+        }
+    })
+
     const [confirm, setConfirm] = useState("")
 
     async function deleteList() {
@@ -61,24 +69,24 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
         })
         window.location.reload(false)
     }
-    
     return (
         <div className={validation ? `listitem ${style} blue` : `listitem ${style} red`}>
-            <div className="flex-listitem">
-                {validation ? <Link to={"/lists/id/" + list_id}><h2 className="blue-link">{list_name}</h2></Link> : <h2>{list_name}</h2> }
+            <div className={charged ? "flex-listitem" : "flex-listitem transparent"}>
+                {validation ? <Link to={"/lists/id/" + list_id}><h2 className={charged ? "blue-link" : "blue-link transparent"}>{list_name}</h2></Link> : <h2 className={charged ? "" : "transparent"}>{list_name}</h2> }
                 {user && ( user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <div className="cross-flex"><div className="cross" onClick={deleteList}>
                     <div className="listitem-vertical"></div>
                     <div className="listitem-horizontal"></div>
                 </div> <span className="little-text">{confirm}</span> </div>  : null }
                 {!validation && user && user.polyuser_role === "admin" ? <div className="tick-validation" onClick={addList}></div> : null }
             </div>
-            <h3>{list_year}</h3>
-            <div className="stats">
+            <h3 className={charged ? "" : "transparent"}>{list_year}</h3>
+            <div className={charged ? "stats" : "stats transparent"}>
                 <span>Ville: {infos.city}</span>
                 <span>Theme: {infos.theme}</span>
                 <span>Couleur: {infos.color}</span>
             </div>
-            <p>{list_description}</p>
+            <p className={charged ? "" : "transparent"}>{list_description}</p>
+            {charged ? null : <div className="lds-dual-ring-white"></div> }
         </div>
     )
 }

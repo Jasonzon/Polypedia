@@ -64,6 +64,19 @@ router.put("/id/:id", async (req,res) => {
     }
 })
 
+//update list validation
+
+router.put("/validation/:id", async (req,res) => {
+    try {
+        const {id} = req.params
+        const {validation} = req.body
+        const updateList = await pool.query("UPDATE color SET validation = $1 WHERE color_id = $2",[validation, id])
+        res.json("List was updated")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 //delete a color by id
 
 router.delete("/id/:id", async (req,res) => {
