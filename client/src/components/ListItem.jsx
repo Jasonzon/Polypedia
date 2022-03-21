@@ -67,6 +67,21 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
         })
+        const response_city = await fetch(`http://localhost:5000/villes/validation/${list_city}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        const response_color = await fetch(`http://localhost:5000/color/validation/${list_color}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        const response_theme = await fetch(`http://localhost:5000/themes/validation/${list_theme}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
         window.location.reload(false)
     }
     return (

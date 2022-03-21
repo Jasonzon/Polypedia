@@ -64,14 +64,14 @@ router.put("/id/:id", async (req,res) => {
     }
 })
 
-//update list validation
+//update city validation
 
 router.put("/validation/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {validation} = req.body
-        const updateList = await pool.query("UPDATE city SET validation = $1 WHERE city_id = $2",[validation, id])
-        res.json("List was updated")
+        const updateCity = await pool.query("UPDATE city SET validation = $1 WHERE city_id = $2",[validation, id])
+        res.json("City was updated")
     } catch (err) {
         console.error(err.message)
     }

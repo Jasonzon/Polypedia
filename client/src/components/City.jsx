@@ -46,6 +46,16 @@ function City({user, setUser, isConnected, setIsConnected}) {
         }
     }
 
+    async function confirmCity(city_id) {
+        const body = {validation:true}
+        const response = await fetch(`http://localhost:5000/villes/validation/${city_id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        window.location.reload(false)
+    }
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
@@ -73,14 +83,16 @@ function City({user, setUser, isConnected, setIsConnected}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {cities.map(({city_name, city_id}, index) =>
+                        {cities.map(({city_name, city_id, validation}, index) =>
+                        <> {(user && user.polyuser_role === "admin" && !validation) || validation ?
                             <tr key={city_name}>
-                                <td>{city_name}</td>
-                                <td><button className="browse" onClick={() => showLists(city_id)}>Chercher</button></td>  
+                                <td className={validation ? "blue" : "red"}>{city_name}</td>
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => showLists(city_id)}>Chercher</button></td>  
                                 {user && user.polyuser_role === "admin" ? <>
-                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteCity(city_id,index)}>Supprimer</button></td> :
-                                <td><button className="browse" onClick={() => deleteCity(city_id,index)}>Confirmer</button></td> } </> : null }              
-                            </tr>
+                                {!confirm[index] ? <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteCity(city_id,index)}>Supprimer</button></td> :
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteCity(city_id,index)}>Confirmer</button></td> } </> : null }
+                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red" onClick={() => confirmCity(city_id)}>Approuver</button></td> : null }              
+                            </tr> : null } </>
                         )}
                         </tbody>
                     </table>

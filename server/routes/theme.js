@@ -64,14 +64,14 @@ router.put("/id/:id", async (req,res) => {
     }
 })
 
-//update list validation
+//update theme validation
 
 router.put("/validation/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {validation} = req.body
-        const updateList = await pool.query("UPDATE theme SET validation = $1 WHERE theme_id = $2",[validation, id])
-        res.json("List was updated")
+        const updateTheme = await pool.query("UPDATE theme SET validation = $1 WHERE theme_id = $2",[validation, id])
+        res.json("Theme was updated")
     } catch (err) {
         console.error(err.message)
     }

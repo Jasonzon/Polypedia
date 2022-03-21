@@ -46,6 +46,16 @@ function Color({user, setUser, isConnected, setIsConnected}) {
         }
     }
 
+    async function confirmColor(color_id) {
+        const body = {validation:true}
+        const response = await fetch(`http://localhost:5000/color/validation/${color_id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        window.location.reload(false)
+    }
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
@@ -69,26 +79,28 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                         <tr>
                             <td>Couleur</td>
                             <td>Listes</td>
-                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null }
+                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null}
                         </tr>
                         </thead>
                         <tbody>
-                        {colors.map(({color_name, color_id}, index) => 
+                        {colors.map(({color_name, color_id, validation}, index) => 
+                            <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={color_name}>
-                                <td>{color_name}</td>
-                                <td><button className="browse" onClick={() => showLists(color_id)}>Chercher</button></td>
+                                <td className={validation ? "blue" : "red"}>{color_name}</td>
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => showLists(color_id)}>Chercher</button></td>
                                 {user && user.polyuser_role === "admin" ? <>
-                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteColor(color_id,index)}>Supprimer</button></td> :
-                                <td><button className="browse" onClick={() => deleteColor(color_id,index)}>Confirmer</button></td> } </> : null }       
-                            </tr>
+                                {!confirm[index] ? <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteColor(color_id,index)}>Supprimer</button></td> :
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteColor(color_id,index)}>Confirmer</button></td> } </> : null }
+                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red" onClick={() => confirmColor(color_id)}>Approuver</button></td> : null }       
+                            </tr> : null } </>
                         )}
                         </tbody>
                     </table>
                 </div>
                 <ul className="color-list">
-                    {colorList.map(({list_id,list_name, list_year}) => 
+                    {colorList.map(({list_id,list_name, list_year, validation}) => 
                         <li className="color-item" key={`${list_name}-color`} onClick={() => navigate(`/lists/id/${list_id}`)}>
-                            <div className="coloritem">
+                            <div className={validation ? "coloritem blue" : "coloritem red"}>
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>
                             </div>

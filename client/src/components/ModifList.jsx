@@ -226,7 +226,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
                         {styleName === "" ? null : <span className="little-text">Vous devez rentrer un nom</span>}
                         <input onChange={(e)=>onChange(e)} value={parseInt(inputs.list_year.toString().replace(/[^0-9.]/g, ''))} className={`input-user2 ${styleYear}`} type="text" id="input_year" name="list_year" maxLength="4" required />
                         {styleYear === "" ? null : <span className="little-text">Vous devez rentrer une année</span>}
-                        <input onChange={(e)=>onChange(e)} value={inputs.list_description} className={`input-user2 ${styleDescription}`} type="text" id="input_description" name="list_description" required />
+                        <input onChange={(e)=>onChange(e)} value={inputs.list_description} className={`input-user2 ${styleDescription}`} type="text" id="input_description" name="list_description" maxLength="500" required />
                         {styleDescription === "" ? null : <span className="little-text">Vous devez rentrer une description</span>}
                         <Select style={styleCity} value="city" name={"list_city"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search1} list={cities}/>
                         {styleCity === "" ? null : <span className="little-text">Vous devez rentrer une ville</span>}

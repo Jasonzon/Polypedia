@@ -23,6 +23,15 @@ function AddTheme({user, setUser, isConnected, setIsConnected}) {
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
             })
+            const parseRes = await response.json()
+            if (user && user.polyuser_role === "admin") {
+                const body2 = {validation:true}
+                const response = await fetch(`http://localhost:5000/themes/validation/${parseRes.theme_id}`, {
+                    method: "PUT",
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify(body2)
+                })    
+            }
             navigate("/themes")
         }
         else {

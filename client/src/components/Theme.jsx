@@ -46,6 +46,16 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
         }
     }
 
+    async function confirmTheme(theme_id) {
+        const body = {validation:true}
+        const response = await fetch(`http://localhost:5000/themes/validation/${theme_id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+        window.location.reload(false)
+    }  
+
     return (
         <div>
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
@@ -69,18 +79,20 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                         <tr>
                             <td>Theme</td>
                             <td>Listes</td>
-                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null }
+                            {user && user.polyuser_role === "admin" ? <td>Supprimer</td> : null}
                         </tr>
                         </thead>
                         <tbody>
-                        {themes.map(({theme_name, theme_id}, index) =>
+                        {themes.map(({theme_name, theme_id, validation}, index) =>
+                        <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={theme_name}>
-                                <td>{theme_name}</td>
-                                <td><button className="browse" onClick={() => showLists(theme_id)}>Chercher</button></td>
+                                <td className={validation ? "blue" : "red"}>{theme_name}</td>
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => showLists(theme_id)}>Chercher</button></td>
                                 {user && user.polyuser_role === "admin" ? <>
-                                {!confirm[index] ? <td><button className="browse" onClick={() => deleteTheme(theme_id,index)}>Supprimer</button></td> :
-                                <td><button className="browse" onClick={() => deleteTheme(theme_id,index)}>Confirmer</button></td> } </> : null }                
-                            </tr>
+                                {!confirm[index] ? <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteTheme(theme_id,index)}>Supprimer</button></td> :
+                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteTheme(theme_id,index)}>Confirmer</button></td> } </> : null }
+                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red" onClick={() => confirmTheme(theme_id)}>Approuver</button></td> : null }                 
+                            </tr> : null } </>
                         )}
                         </tbody>
                     </table>

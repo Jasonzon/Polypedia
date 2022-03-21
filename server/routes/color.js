@@ -64,14 +64,14 @@ router.put("/id/:id", async (req,res) => {
     }
 })
 
-//update list validation
+//update color validation
 
 router.put("/validation/:id", async (req,res) => {
     try {
         const {id} = req.params
         const {validation} = req.body
-        const updateList = await pool.query("UPDATE color SET validation = $1 WHERE color_id = $2",[validation, id])
-        res.json("List was updated")
+        const updateColor = await pool.query("UPDATE color SET validation = $1 WHERE color_id = $2",[validation, id])
+        res.json("Color was updated")
     } catch (err) {
         console.error(err.message)
     }

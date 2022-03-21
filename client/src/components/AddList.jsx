@@ -223,15 +223,15 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
                     <div className="flex-column">
                         <input onChange={(e)=>onChange(e)} value={inputs.list_name.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user2 ${styleName}`} type="text" id="input_name" name="list_name" maxLength="20" required />
                         {styleName === "" ? null : <span className="little-text">Vous devez rentrer un nom</span>}
-                        <input onChange={(e)=>onChange(e)} value={parseInt(inputs.list_year.toString().replace(/[^0-9]/g,''))} className={`input-user2 ${styleYear}`} type="text" id="input_year" name="list_year" maxLength="4" required />
+                        <input onChange={(e)=>onChange(e)} value={inputs.list_year.toString().replace(/[^0-9]/g,'')} className={`input-user2 ${styleYear}`} type="text" id="input_year" name="list_year" maxLength="4" required />
                         {styleYear === "" ? null : <span className="little-text">Vous devez rentrer une année</span>}
-                        <input onChange={(e)=>onChange(e)} value={inputs.list_description} className={`input-user2 ${styleDescription}`} type="text" id="input_description" name="list_description" required />
+                        <input onChange={(e)=>onChange(e)} value={inputs.list_description} className={`input-user2 ${styleDescription}`} type="text" id="input_description" name="list_description" maxLength="500" required />
                         {styleDescription === "" ? null : <span className="little-text">Vous devez rentrer une description</span>}
-                        <Select style={styleCity} value="city" name={"list_city"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search1} list={cities}/>
+                        <Select style={styleCity} value="city" name={"list_city"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search1} list={cities.filter((obj) => obj.validation)}/>
                         {styleCity === "" ? null : <span className="little-text">Vous devez rentrer une ville</span>}
-                        <Select style={styleTheme} value="theme" name={"list_theme"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search2} list={themes}/>
+                        <Select style={styleTheme} value="theme" name={"list_theme"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search2} list={themes.filter((obj) => obj.validation)}/>
                         {styleTheme === "" ? null : <span className="little-text">Vous devez rentrer un thème</span>}
-                        <Select style={styleColor} value="color" name={"list_color"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search3} list={colors}/>
+                        <Select style={styleColor} value="color" name={"list_color"} inputs={inputs} setInputs={setInputs} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} search={search3} list={colors.filter((obj) => obj.validation)}/>
                         {styleColor === "" ? null : <span className="little-text">Vous devez rentrer une couleur</span>}
                     </div>
                 </div>
