@@ -83,7 +83,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {colors.map(({color_name, color_id, validation}, index) => 
+                        {colors.sort(function(a,b){return a.validation-b.validation}).map(({color_name, color_id, validation}, index) => 
                             <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={color_name}>
                                 <td className={validation ? "blue" : "red"}>{color_name}</td>

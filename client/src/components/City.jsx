@@ -83,7 +83,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {cities.map(({city_name, city_id, validation}, index) =>
+                        {cities.sort(function(a,b){return a.validation-b.validation}).map(({city_name, city_id, validation}, index) =>
                         <> {(user && user.polyuser_role === "admin" && !validation) || validation ?
                             <tr key={city_name}>
                                 <td className={validation ? "blue" : "red"}>{city_name}</td>

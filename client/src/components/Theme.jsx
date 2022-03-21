@@ -83,7 +83,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {themes.map(({theme_name, theme_id, validation}, index) =>
+                        {themes.sort(function(a,b){return a.validation-b.validation}).map(({theme_name, theme_id, validation}, index) =>
                         <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={theme_name}>
                                 <td className={validation ? "blue" : "red"}>{theme_name}</td>

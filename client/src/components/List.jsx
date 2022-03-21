@@ -34,7 +34,7 @@ function List({path, user, setUser, isConnected, setIsConnected}) {
                 </div></div> )}
             </div>
             <ul className="list-list">
-                {lists.map(({polyuser_id, list_id, list_name, list_color, list_theme, list_city, list_year, list_description, validation}) => 
+                {lists.sort(function(a,b){return a.validation-b.validation}).map(({polyuser_id, list_id, list_name, list_color, list_theme, list_city, list_year, list_description, validation}) => 
                    <> {(user && user.polyuser_role === "admin" && !validation) || validation ?
                     <li key={list_name}>
                         <ListItem style={""} polyuser_id={polyuser_id} user={user} list_id={list_id} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} validation={validation}/>
