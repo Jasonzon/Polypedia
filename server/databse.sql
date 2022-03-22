@@ -9,6 +9,7 @@ CREATE TABLE list (
     list_year INT NOT NULL,
     polyuser_id INT NOT NULL,
     list_description VARCHAR(5000) NOT NULL,
+    validation BOOLEAN,
     FOREIGN KEY (list_city) REFERENCES city(city_id) ON DELETE CASCADE,
     FOREIGN KEY (list_color) REFERENCES color(color_id) ON DELETE CASCADE,
     FOREIGN KEY (list_theme) REFERENCES theme(theme_id) ON DELETE CASCADE,
@@ -17,7 +18,8 @@ CREATE TABLE list (
 
 CREATE TABLE city (
     city_id SERIAL PRIMARY KEY,
-    city_name VARCHAR(255) NOT NULL
+    city_name VARCHAR(255) NOT NULL,
+    validation BOOLEAN
 );
 
 CREATE TABLE polyuser (
@@ -31,7 +33,8 @@ CREATE TABLE polyuser (
 
 CREATE TABLE color (
     color_id SERIAL PRIMARY KEY,
-    color_name VARCHAR(255) NOT NULL
+    color_name VARCHAR(255) NOT NULL,
+    validation BOOLEAN
 );
 
 CREATE TABLE theme (
