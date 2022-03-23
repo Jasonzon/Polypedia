@@ -58,6 +58,7 @@ router.put("/register", validInfo, async (req,res )=> {
 
 router.post("/login", validInfo, async (req,res) => {
     try {
+        console.log("coucou")
         
         const {mail, password} = req.body
         const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_mail = $1",[mail])
