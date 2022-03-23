@@ -12,7 +12,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
     const [confirm, setConfirm] = useState([])
 
     async function getCities() {
-        const response = await fetch("http://localhost:5000/villes", {
+        const response = await fetch("/villes", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -25,7 +25,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
     },[])
 
     async function showLists(city_id) {
-        const response = await fetch(`http://localhost:5000/listes/city/${city_id}`, {
+        const response = await fetch(`/listes/city/${city_id}`, {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -34,7 +34,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
 
     async function deleteCity(city_id, index) {
         if (confirm[index]) {
-            const response = await fetch(`http://localhost:5000/villes/id/${city_id}`, {
+            const response = await fetch(`/villes/id/${city_id}`, {
                 method: "DELETE"
             })
             window.location.reload(false);
@@ -48,7 +48,7 @@ function City({user, setUser, isConnected, setIsConnected}) {
 
     async function confirmCity(city_id) {
         const body = {validation:true}
-        const response = await fetch(`http://localhost:5000/villes/validation/${city_id}`, {
+        const response = await fetch(`/villes/validation/${city_id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)

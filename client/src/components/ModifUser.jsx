@@ -29,7 +29,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
     async function submitModif() {
 
         if (mail !== "") {
-            const res = await fetch(`http://localhost:5000/users/mail/${mail}`, {
+            const res = await fetch(`/users/mail/${mail}`, {
                 method: "GET"
             })
             const parse = await res.json()
@@ -39,7 +39,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
                     setStylePassword("")
                     setStylePseudo("")
                     const body = {name:name.replace(/[^a-zA-Z0-9_-]/g,''), mail, description, password, id:user.polyuser_id}
-                    const res = await fetch("http://localhost:5000/auth/register", {
+                    const res = await fetch("/auth/register", {
                         method: "PUT",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)
@@ -66,7 +66,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
                     setStyleMail("")
                     setStylePseudo("")
                     const body = {name:name.replace(/[^a-zA-Z0-9_-]/g,''), mail, description}
-                    const response = await fetch(`http://localhost:5000/users/id/${user.polyuser_id}`, {
+                    const response = await fetch(`/users/id/${user.polyuser_id}`, {
                         method: "PUT",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)

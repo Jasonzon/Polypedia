@@ -16,7 +16,7 @@ function Home({user, setUser, isConnected, setIsConnected}) {
   const [select, setSelect] = useState("")
   
   async function getLists() {
-    const response = await fetch("http://localhost:5000/listes", {
+    const response = await fetch("/listes", {
       method: "GET"
     })
 

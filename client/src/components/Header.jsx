@@ -6,7 +6,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
 
     const checkAuthenticated = async () => {
         try {
-            const res = await fetch("http://localhost:5000/auth/verify", {
+            const res = await fetch("/auth/verify", {
                 method: "GET",
                 headers: {token: localStorage.token}
             })
@@ -25,7 +25,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
     }
 
     async function getUser() {
-        const response = await fetch("http://localhost:5000/dashboard/", {
+        const response = await fetch("/dashboard/", {
             method:"GET",
             headers: {token: localStorage.token}
         

@@ -26,7 +26,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
 
             if (mail !== "") {
                 setStyleMail("")
-                const res = await fetch(`http://localhost:5000/users/mail/${mail}`, {
+                const res = await fetch(`/users/mail/${mail}`, {
                     method: "GET"
                 })
                 const parse = await res.json()
@@ -35,7 +35,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                     setStylePassword("")
                     setStylePseudo("")
                     const body = {mail, password, name:name.replace(/[^a-zA-Z0-9_-]/g,'')}
-                    const response = await fetch("http://localhost:5000/auth/register", {
+                    const response = await fetch("/auth/register", {
                         method: "POST",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)
@@ -89,7 +89,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
 
             if (mail !== "") {
                 setStyleMail("")
-                const res = await fetch(`http://localhost:5000/users/mail/${mail}`, {
+                const res = await fetch(`/users/mail/${mail}`, {
                     method: "GET"
                 })
                 const parse = await res.json()
@@ -97,7 +97,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
                 if (parse.length !== 0 && password !== "") {
                     setStylePassword("")
                     const body = {mail, password}
-                    const response = await fetch("http://localhost:5000/auth/login", {
+                    const response = await fetch("/auth/login", {
                         method: "POST",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)

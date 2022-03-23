@@ -8,7 +8,7 @@ function ListSpec({user, setUser, isConnected, setIsConnected}) {
     const [lists, setLists] = useState([])
     const {name} = useParams()
     async function getLists() {
-        const response = await fetch(`http://localhost:5000/listes/name/${name}`, {
+        const response = await fetch(`/listes/name/${name}`, {
             method:"GET"
         })
         const parseRes = await response.json()

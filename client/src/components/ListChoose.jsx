@@ -20,7 +20,7 @@ function ListChoose({path, user, setUser, isConnected, setIsConnected}) {
     const [list, setList] = useState([])
     
     async function getList() {
-        const response = await fetch("http://localhost:5000/listes", {
+        const response = await fetch("/listes", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -35,22 +35,22 @@ function ListChoose({path, user, setUser, isConnected, setIsConnected}) {
     const [parseRes_theme, setParseRes_theme] = useState(0)
 
     async function getLists() {
-        const response = await fetch(`http://localhost:5000/listes/id/${id}`, {
+        const response = await fetch(`/listes/id/${id}`, {
             method: "GET"
         })
         const parseRes = await response.json()
 
-        const response_city = await fetch(`http://localhost:5000/villes/id/${parseRes.list_city}`,{
+        const response_city = await fetch(`/villes/id/${parseRes.list_city}`,{
             method: "GET"
         })
         const parseRescity = await response_city.json()
         setParseRes_city(parseRescity)
-        const response_theme = await fetch(`http://localhost:5000/themes/id/${parseRes.list_theme}`,{
+        const response_theme = await fetch(`/themes/id/${parseRes.list_theme}`,{
             method: "GET"
         })
         const parseRestheme = await response_theme.json()
         setParseRes_theme(parseRestheme)
-        const response_color = await fetch(`http://localhost:5000/color/id/${parseRes.list_color}`,{
+        const response_color = await fetch(`/color/id/${parseRes.list_color}`,{
             method: "GET"
         })
         const parseRescolor = await response_color.json()

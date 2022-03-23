@@ -16,22 +16,22 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
     const navigate = useNavigate()
 
     async function getList() {
-        const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
+        const response_city = await fetch(`/villes/id/${list_city}`,{
             method: "GET"
         })
         const parseRes_city = await response_city.json()
 
-        const response_theme = await fetch(`http://localhost:5000/themes/id/${list_theme}`,{
+        const response_theme = await fetch(`/themes/id/${list_theme}`,{
             method: "GET"
         })
         const parseRes_theme = await response_theme.json()
         
-        const response_color = await fetch(`http://localhost:5000/color/id/${list_color}`,{
+        const response_color = await fetch(`/color/id/${list_color}`,{
             method: "GET"
         })
         const parseRes_color = await response_color.json()
 
-        const response_user = await fetch(`http://localhost:5000/users/id/${polyuser_id}`, {
+        const response_user = await fetch(`/users/id/${polyuser_id}`, {
             method: "GET"
         })
         const parseRes_user = await response_user.json()

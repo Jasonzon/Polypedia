@@ -11,14 +11,14 @@ function AddColor({user, setUser, isConnected, setIsConnected}) {
     async function submitColor() {
 
         const newInput = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase()
-        const res = await fetch(`http://localhost:5000/color/name/${newInput}`, {
+        const res = await fetch(`/color/name/${newInput}`, {
             method: "GET"
         })
         const parseRes = await res.json()
         if (parseRes.length === 0 && newInput !== "") {
             setStyle("")
             const body = {name:newInput.replace(/[^a-zA-Z0-9_-]/g,'')}
-            const response = await fetch("http://localhost:5000/color", {
+            const response = await fetch("/color", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
@@ -26,7 +26,7 @@ function AddColor({user, setUser, isConnected, setIsConnected}) {
             const parseRes = await response.json()
             if (user && user.polyuser_role === "admin") {
                 const body2 = {validation:true}
-                const response = await fetch(`http://localhost:5000/color/validation/${parseRes.color_id}`, {
+                const response = await fetch(`/color/validation/${parseRes.color_id}`, {
                     method: "PUT",
                     headers: {"Content-Type" : "application/json"},
                     body: JSON.stringify(body2)

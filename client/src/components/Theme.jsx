@@ -12,7 +12,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
     const [confirm, setConfirm] = useState([])
 
     async function getThemes() {
-        const response = await fetch("http://localhost:5000/themes", {
+        const response = await fetch("/themes", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -25,7 +25,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
     },[])
 
     async function showLists(theme_id) {
-        const response = await fetch(`http://localhost:5000/listes/theme/${theme_id}`, {
+        const response = await fetch(`/listes/theme/${theme_id}`, {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -34,7 +34,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
 
     async function deleteTheme(theme_id, index) {
         if (confirm[index]) {
-            const response = await fetch(`http://localhost:5000/themes/id/${theme_id}`, {
+            const response = await fetch(`/themes/id/${theme_id}`, {
                 method: "DELETE"
             })
             window.location.reload(false);
@@ -48,7 +48,7 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
 
     async function confirmTheme(theme_id) {
         const body = {validation:true}
-        const response = await fetch(`http://localhost:5000/themes/validation/${theme_id}`, {
+        const response = await fetch(`/themes/validation/${theme_id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)

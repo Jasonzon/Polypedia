@@ -12,17 +12,17 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
     const [charged, setCharged] = useState(false)
 
     async function getInfos() {
-        const response_city = await fetch(`http://localhost:5000/villes/id/${list_city}`,{
+        const response_city = await fetch(`/villes/id/${list_city}`,{
             method: "GET"
         })
         const parseRes_city = await response_city.json()
 
-        const response_theme = await fetch(`http://localhost:5000/themes/id/${list_theme}`,{
+        const response_theme = await fetch(`/themes/id/${list_theme}`,{
             method: "GET"
         })
         const parseRes_theme = await response_theme.json()
 
-        const response_color = await fetch(`http://localhost:5000/color/id/${list_color}`,{
+        const response_color = await fetch(`/color/id/${list_color}`,{
             method: "GET"
         })
         const parseRes_color = await response_color.json()
@@ -50,7 +50,7 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
 
     async function deleteList() {
         if (confirm !== "") {
-            const response = await fetch(`http://localhost:5000/listes/id/${list_id}`, {
+            const response = await fetch(`/listes/id/${list_id}`, {
                 method: "DELETE"
             })
             window.location.reload(false)
@@ -62,22 +62,22 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
 
     async function addList() {
         const body = {validation:true}
-        const response = await fetch(`http://localhost:5000/listes/validation/${list_id}`, {
+        const response = await fetch(`/listes/validation/${list_id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
         })
-        const response_city = await fetch(`http://localhost:5000/villes/validation/${list_city}`, {
+        const response_city = await fetch(`/villes/validation/${list_city}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
         })
-        const response_color = await fetch(`http://localhost:5000/color/validation/${list_color}`, {
+        const response_color = await fetch(`/color/validation/${list_color}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
         })
-        const response_theme = await fetch(`http://localhost:5000/themes/validation/${list_theme}`, {
+        const response_theme = await fetch(`/themes/validation/${list_theme}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)

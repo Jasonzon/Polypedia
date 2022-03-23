@@ -12,7 +12,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     const [confirm, setConfirm] = useState([])
 
     async function getColors() {
-        const response = await fetch("http://localhost:5000/color", {
+        const response = await fetch("/color", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -25,7 +25,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
     },[])
 
     async function showLists(color_id) {
-        const response = await fetch(`http://localhost:5000/listes/color/${color_id}`, {
+        const response = await fetch(`/listes/color/${color_id}`, {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -34,7 +34,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
 
     async function deleteColor(color_id, index) {
         if (confirm[index]) {
-            const response = await fetch(`http://localhost:5000/color/id/${color_id}`, {
+            const response = await fetch(`/color/id/${color_id}`, {
                 method: "DELETE"
             })
             window.location.reload(false);
@@ -48,7 +48,7 @@ function Color({user, setUser, isConnected, setIsConnected}) {
 
     async function confirmColor(color_id) {
         const body = {validation:true}
-        const response = await fetch(`http://localhost:5000/color/validation/${color_id}`, {
+        const response = await fetch(`/color/validation/${color_id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)

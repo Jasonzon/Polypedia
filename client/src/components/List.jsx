@@ -7,7 +7,7 @@ import { Link} from 'react-router-dom'
 function List({path, user, setUser, isConnected, setIsConnected}) {
     const [lists, setLists] = useState([])
     async function getLists() {
-        const response = await fetch(`http://localhost:5000/listes/${path}`, {
+        const response = await fetch(`/listes/${path}`, {
             method:"GET"
         })
         const parseRes = await response.json()

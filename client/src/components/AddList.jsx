@@ -30,7 +30,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     const [cities, setCities] = useState([])
 
     async function getColors() {
-        const response = await fetch("http://localhost:5000/color", {
+        const response = await fetch("/color", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -38,7 +38,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     }
 
     async function getThemes() {
-        const response = await fetch("http://localhost:5000/themes", {
+        const response = await fetch("/themes", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -46,7 +46,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     }
 
     async function getCities() {
-        const response = await fetch("http://localhost:5000/villes", {
+        const response = await fetch("/villes", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -80,7 +80,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
             var COLOR = 0
             var THEME = 0
 
-            const response_city = await fetch(`http://localhost:5000/villes/name/${newCity}`, {
+            const response_city = await fetch(`/villes/name/${newCity}`, {
                 method: "GET"
             })
             const parseRes_city = await response_city.json()
@@ -88,7 +88,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
                 var CITY = parseRes_city[0].city_id
             }
             
-            const response_color = await fetch(`http://localhost:5000/color/name/${newColor}`, {
+            const response_color = await fetch(`/color/name/${newColor}`, {
                 method: "GET"
             })
             const parseRes_color = await response_color.json()
@@ -96,7 +96,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
                 var COLOR = parseRes_color[0].color_id
             }
 
-            const response_theme = await fetch(`http://localhost:5000/themes/name/${newTheme}`, {
+            const response_theme = await fetch(`/themes/name/${newTheme}`, {
                 method: "GET"
             })
             const parseRes_theme = await response_theme.json()
@@ -112,7 +112,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
 
             if (parseRes_city.length === 0) {
                 const body_city = {name:newCity.replace(/[^a-zA-Z0-9_-]/g,'')}
-                const res_city = await fetch("http://localhost:5000/villes", {
+                const res_city = await fetch("/villes", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
                     body: JSON.stringify(body_city)
@@ -123,7 +123,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
 
             if (parseRes_color.length === 0) {
                 const body_color = {name:newColor.replace(/[^a-zA-Z0-9_-]/g,'')}
-                const res_color = await fetch("http://localhost:5000/color", {
+                const res_color = await fetch("/color", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
                     body: JSON.stringify(body_color)
@@ -134,7 +134,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
 
             if (parseRes_theme.length === 0) {
                 const body_theme = {name:newTheme.replace(/[^a-zA-Z0-9_-]/g,'')}
-                const res_theme = await fetch("http://localhost:5000/themes", {
+                const res_theme = await fetch("/themes", {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
                     body: JSON.stringify(body_theme)
@@ -153,7 +153,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
                 user:user.polyuser_id
             }
 
-            const response_list = await fetch("http://localhost:5000/listes", {
+            const response_list = await fetch("/listes", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body_list)

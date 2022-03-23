@@ -6,7 +6,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
     const [users, setUsers] = useState([])
 
     async function getUsers() {
-        const response = await fetch("http://localhost:5000/users", {
+        const response = await fetch("/users", {
             method: "GET"
         })
         const parseRes = await response.json()
@@ -19,7 +19,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
 
     async function changeRole(polyuser_id, polyuser_role) {
         const newRole = polyuser_role === "user" ? "admin" : "user"
-        const response = await fetch(`http://localhost:5000/users/role/${polyuser_id}`, {
+        const response = await fetch(`/users/role/${polyuser_id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
