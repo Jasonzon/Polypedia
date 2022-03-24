@@ -7,7 +7,7 @@ const proConfig = process.env.DATABASE_URL
 
 
 const pool = new Pool({
-    connectionString: process.env.NODE_END === "production" ? proConfig : devConfig
+    connectionString: proConfig
 })
 
 console.log("pool",pool)
