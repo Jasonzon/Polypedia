@@ -7,7 +7,10 @@ const proConfig = process.env.DATABASE_URL
 
 
 const pool = new Pool({
-    connectionString: proConfig
+    connectionString: proConfig,
+    ssl: {
+        rejectUnauthorized: false
+      }
 })
 
 console.log("pool",pool)
