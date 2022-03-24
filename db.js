@@ -10,4 +10,6 @@ const pool = new Pool({
     connectionString: process.env.NODE_END === "production" ? proConfig : devConfig
 })
 
+console.log("pool",pool)
+
 module.exports = pool
