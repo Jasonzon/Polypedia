@@ -7,10 +7,14 @@ const pool = require("../db")
 
 router.get("/", async (req,res) => {
     try {
+        console.log("VILLES OK1")
         const allCities = await pool.query("SELECT * FROM city")
+        console.log("VILLES OK2")
         res.json(allCities.rows)
     } catch (err) {
+        console.log("VILLES PASOK1")
         console.error(err.message)
+        console.log("VILLES PASOK2")
     }
 })
 
