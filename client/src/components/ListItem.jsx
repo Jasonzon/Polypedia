@@ -85,7 +85,7 @@ function ListItem({user, polyuser_id, style, list_id, list_name, list_color, lis
         window.location.reload(false)
     }
     return (
-        <div className={validation ? `listitem ${style} blue` : `listitem ${style} red`}>
+        <div className={typeof validation!== undefined || validation === true ? `listitem ${style} blue` : `listitem ${style} red`}>
             <div className={charged ? "flex-listitem" : "flex-listitem transparent"}>
                 {validation ? <Link to={"/lists/id/" + list_id}><h2 className={charged ? "blue-link" : "blue-link transparent"}>{list_name}</h2></Link> : <h2 className={charged ? "" : "transparent"}>{list_name}</h2> }
                 {user && ( user.polyuser_role === "admin" || user.polyuser_id === polyuser_id) ? <div className="cross-flex"><div className="cross" onClick={deleteList}>
