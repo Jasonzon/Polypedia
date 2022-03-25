@@ -98,9 +98,9 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                     </table>
                 </div>
                 <ul className="color-list">
-                    {themeList.map(({list_id, list_name, list_year}) => 
+                    {themeList.map(({list_id, list_name, list_year, validation}) => 
                         <li className="color-item" key={`${list_name}-theme`} onClick={() => navigate(`/lists/id/${list_id}`)}>
-                            <div className="coloritem">
+                            <div className={validation ? "coloritem blue" : "coloritem red"}>
                                 <span>{list_name}</span>
                                 <span className="year">{list_year}</span>
                             </div>

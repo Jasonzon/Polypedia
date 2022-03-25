@@ -35,9 +35,9 @@ function ListSpec({user, setUser, isConnected, setIsConnected}) {
                 </div> )}
             </div>
             <ul className="list-list">
-                {lists.map(({list_id, list_name, list_color, list_theme, list_city, list_year, list_description}) => 
+                {lists.map(({list_id, list_name, list_color, list_theme, list_city, list_year, list_description, validation}) => 
                     <li key={list_name}>
-                        <ListItem style={""} list_id={list_id} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} />
+                        <ListItem style={""} list_id={list_id} list_name={list_name} list_color={list_color} list_theme={list_theme} list_year={list_year} list_city={list_city} list_description={list_description} validation={validation} />
                     </li>
                 )}
             </ul>

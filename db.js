@@ -13,6 +13,4 @@ const pool = new Pool({
       }
 })
 
-console.log("pool",pool)
-
 module.exports = pool
