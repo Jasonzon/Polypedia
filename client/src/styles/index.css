@@ -28,4 +28,11 @@ html {
 
 #root {
   margin:0;
+  display:grid;
+}
+
+@font-face {
+  font-family: "steelfish";
+  src: local("steelfish"),
+  url("../fonts/steelfish.otf") format("truetype");
 }

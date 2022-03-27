@@ -15,7 +15,7 @@ function Connected({setAuth, user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="connected">
                 <h1>Connecté</h1>

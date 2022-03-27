@@ -9,7 +9,7 @@ function User({isConnected, setIsConnected, user, setUser}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             {isConnected ? <Connected setAuth={setAuth} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected} /> : <Disconected user={user} setUser={setUser} setAuth={setAuth} isConnected={isConnected} setIsConnected={setIsConnected}/>}
         </div>
     )

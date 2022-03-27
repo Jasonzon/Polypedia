@@ -139,7 +139,7 @@ function Disconnected({setAuth, user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             {isRegistered ? <h1 className="title-user">Connexion</h1> : <h1>Enregistrement</h1>}
             <div className="user">

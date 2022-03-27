@@ -207,7 +207,7 @@ function AddList({user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <h1>Ajouter une liste</h1>
             <div className="big-form">

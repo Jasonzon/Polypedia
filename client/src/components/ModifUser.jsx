@@ -95,7 +95,7 @@ function ModifUser({user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="title-flex">
                 <h1>Mettre à jour mon compte</h1>

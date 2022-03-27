@@ -57,7 +57,7 @@ function ListView({id, user, setUser, isConnected, setIsConnected, list_name, li
     }, [infos])
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="title-flex">
 

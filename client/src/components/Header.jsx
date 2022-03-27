@@ -41,7 +41,7 @@ function Header({user, setUser, isConnected, setIsConnected}) {
     },[])
 
     return (
-        <div className="header">
+        <div className="header font-face-gm">
             <h1 className="title">Polypedia</h1>
             <nav className="nav">
                 <Link className="link" to="/">Accueil</Link>

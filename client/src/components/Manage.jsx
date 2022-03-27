@@ -30,7 +30,7 @@ function Manage({user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="manage-title">
                 <h1>Gérer les utilisateurs</h1>

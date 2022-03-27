@@ -6,7 +6,7 @@ function Select({value, style, name, user, setUser, isConnected, setIsConnected,
         setInputs({...inputs, [e.target.name] : e.target.value})
     }
     return (
-        <div className="select">
+        <div className="select font-face-gm">
             {value === "city" ? <input onChange={(e)=>onChange(e)} value={inputs.list_city.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user3 ${style}`} type="search" name={name} list={search} maxLength="20"></input> : null }
             {value === "color" ? <input onChange={(e)=>onChange(e)} value={inputs.list_color.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user3 ${style}`} type="search" name={name} list={search} maxLength="20"></input> : null }
             {value === "theme" ? <input onChange={(e)=>onChange(e)} value={inputs.list_theme.replace(/[^a-zA-Z0-9_-]/g,'')} className={`input-user3 ${style}`} type="search" name={name} list={search} maxLength="20"></input> : null }

@@ -40,7 +40,7 @@ function AddCity({user, setUser, isConnected, setIsConnected}) {
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <div className="add-name">
                 <label>Ajouter une ville :</label>

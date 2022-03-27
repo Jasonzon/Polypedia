@@ -208,7 +208,7 @@ function ModifList({user, setUser, isConnected, setIsConnected, list_name, list_
     }
 
     return (
-        <div>
+        <div className="font-face-gm">
             <Header  user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
             <h1>Modifier "{list_name}"</h1>
             <div className="big-form">

@@ -39,7 +39,6 @@ h1 {
     .nav {
         gap:.25rem;
         justify-content: space-evenly;
-        min-width:445px;
     }
     .link {
         padding:.75rem .25rem;
@@ -53,6 +52,9 @@ h1 {
     }
     .home-flex h2 {
       display:none;
+    }
+    .list-list {
+      grid-template-columns: repeat(1, 1fr);
     }
 }
 
