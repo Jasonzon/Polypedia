@@ -24,3 +24,11 @@
     width:7rem;
     margin-bottom:.5rem;
 }
+
+@media screen and (max-width: 600px) {
+    .infos-view {
+        gap:0;
+        flex-direction:column;
+        justify-content:flex-start;
+    }
+}

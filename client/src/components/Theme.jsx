@@ -87,11 +87,11 @@ function Theme({user, setUser, isConnected, setIsConnected}) {
                         <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={theme_name}>
                                 <td className={validation ? "blue" : "red"}>{theme_name}</td>
-                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => showLists(theme_id)}>Chercher</button></td>
+                                <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => showLists(theme_id)}>Chercher</button></td>
                                 {user && user.polyuser_role === "admin" ? <>
-                                {!confirm[index] ? <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteTheme(theme_id,index)}>Supprimer</button></td> :
-                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteTheme(theme_id,index)}>Confirmer</button></td> } </> : null }
-                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red" onClick={() => confirmTheme(theme_id)}>Approuver</button></td> : null }                 
+                                {!confirm[index] ? <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => deleteTheme(theme_id,index)}>Supprimer</button></td> :
+                                <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => deleteTheme(theme_id,index)}>Confirmer</button></td> } </> : null }
+                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red font-face-gm" onClick={() => confirmTheme(theme_id)}>Approuver</button></td> : null }                 
                             </tr> : null } </>
                         )}
                         </tbody>

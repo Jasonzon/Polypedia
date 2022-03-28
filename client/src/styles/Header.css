@@ -53,9 +53,6 @@ h1 {
     .home-flex h2 {
       display:none;
     }
-    .list-list {
-      grid-template-columns: repeat(1, 1fr);
-    }
 }
 
 .lds-dual-ring {

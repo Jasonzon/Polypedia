@@ -87,11 +87,11 @@ function Color({user, setUser, isConnected, setIsConnected}) {
                             <> {(user && user.polyuser_role === "admin" && !validation) || validation ? 
                             <tr key={color_name}>
                                 <td className={validation ? "blue" : "red"}>{color_name}</td>
-                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => showLists(color_id)}>Chercher</button></td>
+                                <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => showLists(color_id)}>Chercher</button></td>
                                 {user && user.polyuser_role === "admin" ? <>
-                                {!confirm[index] ? <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteColor(color_id,index)}>Supprimer</button></td> :
-                                <td><button className={validation ? "browse blue" : "browse red"} onClick={() => deleteColor(color_id,index)}>Confirmer</button></td> } </> : null }
-                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red" onClick={() => confirmColor(color_id)}>Approuver</button></td> : null }       
+                                {!confirm[index] ? <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => deleteColor(color_id,index)}>Supprimer</button></td> :
+                                <td><button className={validation ? "browse blue font-face-gm" : "browse red font-face-gm"} onClick={() => deleteColor(color_id,index)}>Confirmer</button></td> } </> : null }
+                                {user && user.polyuser_role === "admin" && !validation ? <td><button className="browse red font-face-gm" onClick={() => confirmColor(color_id)}>Approuver</button></td> : null }       
                             </tr> : null } </>
                         )}
                         </tbody>
